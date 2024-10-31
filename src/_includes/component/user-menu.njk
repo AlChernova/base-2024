@@ -1,0 +1,32 @@
+<button class="userMenu__btnOpen" aria-haspopup='true' aria-controls="userMenu" title="де ла Сантисима Тринидад К.Я."><span class="userMenu__ava avatar">
+    <span class="userMenu__nameBtn visually-hidden" id="#userMenu__nameBtn">Пользовательское меню</span>
+    {% icon "user" %} 
+    <!-- вариант с фото
+        <img src="https://api.lorem.space/image/face?w=150&h=200" alt="фото полльзователя"> -->
+</span><span class="userMenu__textBtn userTitle"><span class="userTitle__name">де ла Сантисима Тринидад К.Я.</span><span class="userTitle__role">Сотрудник</span></span></button>
+<nav class="userMenu__container" id="userMenu">
+    <ul class="userMenu__list" role="menu" aria-labelledby="userMenu__nameBtn">
+        <li class="userMenu__itemInfo" role="menuitem"><span class="userMenu__email">PerelmanGYA@kpfu.ru</span></li>
+        <li class="userMenu__divider" aria-hidden="true" role="presentation"></li>
+        <li class="userMenu__item" role="none">
+            <a href="#" class="userMenu__itemLink" role="menuitem">
+                <span class="userMenu__itemIco">{% icon "about" %} </span>
+                <span class="userMenu__itemText">Обо мне</span></a>
+        </li>
+        <li class="userMenu__item" role="none">
+            <a href="#" class="userMenu__itemLink" role="menuitem">
+                <span class="userMenu__itemIco">{% icon "settings" %} </span>
+                <span class="userMenu__itemText">Настройки</span></a>
+        </li>
+        <li class="userMenu__item" role="none">
+            <a href="#" class="userMenu__itemLink" role="menuitem">
+                <span class="userMenu__itemIco">{% icon "theme-setting" %} </span>
+                <span class="userMenu__itemText">Персонализация</span></a>
+        </li>
+        <li class="userMenu__item" role="none">
+            <a href="#" class="userMenu__itemLink" role="menuitem">
+                <span class="userMenu__itemIco">{% icon "logout" %} </span>
+                <span class="userMenu__itemText">Выход</span></a>
+        </li>
+    </ul>
+</nav>

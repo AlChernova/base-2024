@@ -1,0 +1,6 @@
+@import "_include/mixin.css";
+@import "_include/tablet/base.css";
+@import "_include/tablet/components.css";
+@import "_include/tablet/header.css";
+@import "_include/tablet/footer.css";
+@import "_include/tablet/forms.css";

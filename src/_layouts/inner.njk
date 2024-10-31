@@ -1,0 +1,17 @@
+{% include 'header-body.njk' %}
+    <body class="page-inner"> 
+        {% include 'header.njk' %}
+        {% include 'services.njk' %}
+
+        {% include 'sidebar.njk' %}
+        
+        <div class="innerPage">
+            <div class="innerPage__container">
+                 <main class="innerPage__content">{{ content | safe }}</main>
+            </div>
+            {% include 'footer-inner.njk' %}
+        </div>
+       
+        {% include 'footer-body.njk' %}
+    </body>
+</html>

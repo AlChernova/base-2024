@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="ru" data-theme="default">
+    <head>  
+        <meta charset="UTF-8">  
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ЭУ: {{ title }} - {{ eleventyNavigation.module }}</title>
+
+        <link rel="preload" href="/fonts/PTSans-Regular.woff2" crossorigin as="font" type="font/woff2">
+        <link rel="preload" href="/fonts/PTSans-Bold.woff2" crossorigin as="font" type="font/woff2">
+        <link rel="preload" href="/fonts/OpenSans-Regular.woff2" crossorigin as="font" type="font/woff2">
+        <link rel="preload" href="/fonts/OpenSans-SemiBold.woff2" crossorigin as="font" type="font/woff2">
+        <link rel="preload" href="/fonts/OpenSans-Bold.woff2" crossorigin as="font" type="font/woff2">
+
+        <!-- plugins  -->
+        <link rel="stylesheet" href="/scripts/fancybox/fancybox-5.0.min.css"/>
+        <link rel="stylesheet" href="/scripts/choices/choices.css"/>
+        <link rel="stylesheet" href="/scripts/hotel-datepicker/hotel-datepicker.css"/>
+        <link rel="stylesheet" href="/scripts/autosuggest/autosuggest.min.css">
+
+        <!-- main styles  -->
+        <link rel="stylesheet" href="/styles/main.css">
+        <link rel="stylesheet" media="(min-width: 768px)" href="/styles/tablet.css">
+        <link rel="stylesheet" media="(min-width: 1024px)" href="/styles/desctop.css">
+        <!-- для модуля  -->
+        {% if folder %}
+            <link rel="stylesheet" href="/styles/modules/{{ folder }}.css">
+        {% endif %}
+    </head>

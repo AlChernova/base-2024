@@ -1,0 +1,115 @@
+{# <nav>
+    {%- for item in collections.page -%}
+        <a href="{{ item.url }}">{{ item.data.title }}</a>&nbsp;|&nbsp;
+    {%- endfor -%}
+</nav> #}
+
+{# массив ссылок #}
+{% set navPages = collections.all | eleventyNavigation %}
+
+{# маскрос для выделения родительских пунктов в меню #}
+{% macro selectParent(parnt, currentPage) %}
+    {% if parnt.children.length %}
+        {% for child in parnt.children %}
+            {% if child.parent == parnt.key and child.url == currentPage %}
+                {% set select = 'selected' %}
+                {{ select }}
+            {% else %}
+                {{ selectParent(child) }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{# макрос для вложенных меню #}
+{% macro renderNavListItem(entry, class, currentPage) %}
+    {# определяем актив. пункт и его предков #}
+    {% set selected = '' %}
+    {% if entry.url == currentPage %}
+        {% set selected = 'selected' %}
+    {% else %}
+        {% set selected = selectParent(entry, currentPage) %}
+    {% endif %}
+
+<li class="{{ class }}__item {{ selected }}">
+    {% if entry.url == false %}
+        <button class="{{ class }}__link {{ selected }}" 
+        {% set expand = "false" %}
+        {% for child in entry.children %}
+            {% if child.parent == entry.key and child.url == page.url %}
+                {% set expand = "true" %}
+            {% endif %}
+        {% endfor %}
+         aria-expanded = {{ expand }}
+         aria-controls="id_{{ entry.idmenu }}_menu" type="button">
+            {% if entry.icon %}<span class="icok {{ class }}__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-{{ entry.icon }}"></use></svg></span>{% endif %}{{ entry.title }}<span class="icok {{ class }}__arrow"><svg alt=""><use xlink:href="/images/sprite.svg#svg-shevron-bottom-sm"></use></svg></span></button>
+    {% else %}
+        <a class="{{ class }}__link {{ selected }}" href="{{ entry.url }}">
+            {% if entry.icon %}<span class="icok {{ class }}__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-{{ entry.icon }}"></use></svg></span>{% endif %}{{ entry.title }}</a>
+    {% endif %}
+
+    {% if entry.children.length %}
+    <div class="{{ class }}__subcontainer">
+        <ul class="{{ class }}__submenu subMenuSide" id="id_{{ entry.idmenu }}_menu">
+            {% for child in entry.children %}{{ renderNavListItem(child, 'subMenuSide', currentPage) }}{% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</li>
+{% endmacro %}
+
+{# вывод меню с помощью макроса
+<nav class="menuSide">
+    <ul class="menuSide__list">
+        {% for entry in navPages %}{{ renderNavListItem(entry, 'menuSide') }}{% endfor %}
+        // просто код для тестирования
+        <li class="menuSide__item">
+            <button class="menuSide__link" aria-expanded="false" aria-controls="id_test_menu" type="button"><span class="icok menuSide__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-folder-open"></use></svg></span>Тест вложенности<span class="icok menuSide__arrow"><svg alt=""><use xlink:href="/images/sprite.svg#svg-shevron-bottom-sm"></use></svg></span></button>
+            <div class="menuSide__subcontainer">
+                <ul class="menuSide__submenu subMenuSide" id="id_test_menu">
+                    <li class="subMenuSide__item"><a class="subMenuSide__link" href="#">Page 1</a></li>
+                    <li class="subMenuSide__item">
+                        <button class="subMenuSide__link" aria-expanded="false" aria-controls="id_test2_menu" type="button">Раздел<span class="icok menuSide__arrow"><svg alt=""><use xlink:href="/images/sprite.svg#svg-shevron-bottom-sm"></use></svg></span></button>
+                        <div class="subMenuSide__subcontainer">
+                            <ul class="subMenuSide__submenu subMenuSide" id="id_test2_menu">
+                                <li class="subMenuSide__item"><a href="" class="subMenuSide__link">Подраздел</a></li>
+                                <li class="subMenuSide__item">
+                                    <button class="subMenuSide__link" aria-expanded="false" aria-controls="id_test4_menu" type="button">Раздел<span class="icok menuSide__arrow"><svg alt=""><use xlink:href="/images/sprite.svg#svg-shevron-bottom-sm"></use></svg></span></button>
+                                    <div class="subMenuSide__subcontainer">
+                                        <ul class="subMenuSide__submenu subMenuSide" id="id_test4_menu">
+                                            <li class="subMenuSide__item"><a href="" class="subMenuSide__link">Подраздел</a></li>
+                                            <li class="subMenuSide__item"><a href="" class="subMenuSide__link">Подраздел</a></li>
+                                            <li class="subMenuSide__item"><a href="" class="subMenuSide__link">Подраздел</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="subMenuSide__item"><a href="" class="subMenuSide__link">Подраздел</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="subMenuSide__item"><a class="subMenuSide__link" href="#">Page 3</a></li>
+                    <li class="subMenuSide__item">
+                        <button class="subMenuSide__link" aria-expanded="false" aria-controls="id_test3_menu" type="button">Раздел<span class="icok menuSide__arrow"><svg alt=""><use xlink:href="/images/sprite.svg#svg-shevron-bottom-sm"></use></svg></span></button>
+                        <div class="subMenuSide__subcontainer">
+                            <ul class="subMenuSide__submenu subMenuSide" id="id_test3_menu">
+                                <li class="subMenuSide__item"><a href="" class="subMenuSide__link">Подраздел</a></li>
+                                <li class="subMenuSide__item"><a href="" class="subMenuSide__link">Подраздел</a></li>
+                                <li class="subMenuSide__item"><a href="" class="subMenuSide__link">Подраздел</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="subMenuSide__item"><a class="subMenuSide__link" href="#">Page 3</a></li>
+                    
+                </ul>
+            </div>
+        </li>
+        <li class="menuSide__item">
+            <button class="menuSide__link" aria-expanded="false" aria-controls="id_section_menu" type="button"><span class="icok menuSide__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-settings"></use></svg></span>Пример раздела<span class="icok menuSide__arrow"><svg alt=""><use xlink:href="/images/sprite.svg#svg-shevron-bottom-sm"></use></svg></span></button>
+            <div class="menuSide__subcontainer">
+                <ul class="menuSide__submenu subMenuSide" id="id_section_menu">
+                    <li class="subMenuSide__item"><a class="subMenuSide__link" href="/subsection.html">Подраздел</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</nav> #}

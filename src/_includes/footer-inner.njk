@@ -1,0 +1,25 @@
+<footer class="footer innerPage__footer">
+    <div class="footer__container">
+        <nav class="footer__nav">
+            <div class="footer__navLeft">
+                <a href="https://kpfu.ru/" class="footer__logo" aria-label="Перейти на сайт КФУ">
+                    <span class="footer__logo-img">{% include 'logos/logo-kfu-3line.njk' %}</span>
+                    {# <img class="footer__logo-img" src="./images/kfu_logo_3l-black_rus.svg" alt="Лого КФУ"> #}
+                </a>
+                <span class="footer__navLeft-divider" role="presentation"></span>
+
+                <!-- временно вставить ссылку на ЛК нынешний -->
+                <a class="footer__btn servicesBtn servicesBtn--footer" href="https://shelly.kpfu.ru/"><span class="servicesBtn__hamburger hamburger burger1"><span></span></span><span class="servicesBtn__text">Сервисы</span></a>
+                {# Здесь будет открываться плашка с списком
+                <button class="footer__btn servicesBtn" type="button" aria-expanded="false" aria-controls="services"><span class="servicesBtn__hamburger hamburger burger1"><span></span></span><span class="servicesBtn__text">Сервисы</span></button> #}
+            </div>
+            <ul class="footer__navUtils">
+                <li class="footer__navUtils-item"><a href="https://kpfu.ru/staff/telefonnyj-spravochnik-kfu" class="footer__navUtils-link">Справочник телефонов</a></li>
+                <li class="footer__navUtils-item"><a href="https://kpfu.ru/about_university/karta-vseh-obektov" class="footer__navUtils-link">Карта зданий</a></li>
+                <li class="footer__navUtils-item"><a href="https://kpfu.ru/about_university/internet-priemnaya" class="footer__navUtils-link">Интернет-приемная</a></li>
+                <li class="footer__navUtils-item"><a href="https://dis.kpfu.ru/tehnicheskaya-podderzhka/" class="footer__navUtils-link">Тех. поддержка</a></li>
+            </ul>
+        </nav>
+        <div class="footer__copy">&copy; 2023 Казанский федеральный университет</div>
+    </div>
+</footer>

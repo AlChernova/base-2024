@@ -1,0 +1,13 @@
+<div class="sidebar">
+    <div class="sidebar__content" id="sidebar">
+        <ul class="sidebar__utils utils utils--view-second">
+                {% include 'component/utils-menu.njk' %}
+        </ul>
+        <h1 class="visually-hidden">Главное меню</h1>
+        {% if folder %}
+            {% include '../' + folder + '/_navigation.njk' %}
+        {% else %}
+            {% include '../_navigation.njk' %}
+        {% endif %}
+    </div>
+</div>

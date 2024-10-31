@@ -1,0 +1,30 @@
+{% include 'header-body.njk' %}
+    <body class="page-popup"> 
+        <main class="page-popup__content {{ popupName }}">
+            {{ content | safe }}
+
+            {# <footer class="page-popup__footer">
+                <button class="button btn-default" data-close>Закрыть</button>
+            </footer> #}
+        </main>
+        
+
+        {% include 'footer-body.njk' %}
+
+        <!-- скрипт для закрытия попапа с iframe по кнопке  -->
+        <script>
+            window.addEventListener('load', function () {
+                const arrayCloseBtn = document.querySelectorAll('[data-close]');
+                arrayCloseBtn.forEach((item) => { 
+                    item.addEventListener('click', closeIframe);
+                });
+
+                function closeIframe() {
+                    window.parent.Fancybox.close(false);
+                }
+                },
+            false
+            );
+        </script>   
+    </body>
+</html>

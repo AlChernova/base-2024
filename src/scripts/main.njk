@@ -1,0 +1,59 @@
+---
+permalink: scripts/main.js
+---
+{# для рабочего сервера конечному файлу поменять кодировку файла на WIN 1251
+иначе русские буквы из скриптов не будут отображаться корректно #}
+
+{% include "./includes/classes.js" %}
+{% include "./includes/const.js" %}
+{% include "./includes/function.js" %}
+
+window.addEventListener('load', function () {
+    let winWidth = window.innerWidth;
+    
+    {% include "./components/sidebar.js" %}
+    {% include "./components/menuside.js" %}
+    {% include "./components/usermenu.js" %}
+    {% include "./components/change-theme.js" %}
+    {% include "./components/showhide.js" %}
+    {% include "./components/shorten-longtext.js" %}
+    {% include "./components/popups.js" %}
+    {% include "./components/sidepanel-mob.js" %}
+    {% include "./components/upload-simple.js" %}
+    {% include "./components/actionmenu.js" %}
+    
+    {% include "./components/search-employee.js" %}
+},
+false
+);
+    {% include "./components/forms.js" %}
+
+
+
+/* для закрытия попапа с iframe по кнопке отмена */
+function closeIframeMain(){ 
+    // $(".is-close").trigger("click"); 
+    Fancybox.close();
+}
+
+/* вызов попапа из другого попапа */
+function openIframeTwo(source) {
+    console.log(window.frames);
+    Fancybox.show([
+        {
+            src: `calculation-popup.html?source=${source}`,
+            type: "iframe",
+            preload: false,
+            width: 600,
+            height: 300,
+        },
+    ]);
+}
+/* обмен данными между попапами */
+function insertDataTo(source, data) {
+    let frames = document.querySelector(`iframe#${source}`);
+    console.log(frames);
+    let output = frames.contentDocument.querySelector('#testdata');
+    output.textContent = data;
+
+}

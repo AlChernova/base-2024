@@ -1,0 +1,29 @@
+{
+  "name": "base-2024",
+  "version": "1.0.0",
+  "description": "база 2024",
+  "main": "index.html",
+  "scripts": {
+    "watch": "npx @11ty/eleventy --serve --watch",
+    "build": "npx @11ty/eleventy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy-navigation": "^0.3.5",
+    "autoprefixer": "^10.4.15",
+    "eleventy-plugin-svg-sprite": "^2.4.2",
+    "esbuild": "^0.19.2",
+    "html-minifier-terser": "^7.2.0",
+    "postcss": "^8.4.28",
+    "postcss-comment": "^2.0.0",
+    "postcss-csso": "^6.0.1",
+    "postcss-import": "^15.1.0",
+    "postcss-mixins": "^9.0.4",
+    "postcss-nested": "^6.0.1",
+    "svg-sprite": "^2.0.2",
+    "svgo": "^3.0.4"
+  }
+}

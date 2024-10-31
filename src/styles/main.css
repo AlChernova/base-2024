@@ -1,0 +1,16 @@
+/* @import "tailwindcss/base"; */
+@import "_include/variables.css";
+@import "_include/mixin.css";
+@import "_include/bootstrap-grid.css"; 
+@import "_include/base.css"; 
+
+/* @import "tailwindcss/components"; */
+@import "_include/buttons.css"; 
+@import "_include/forms.css"; 
+@import "_include/components.css"; 
+@import "_include/header.css";
+@import "_include/footer.css";
+@import "_include/layout.css";
+@import "_include/menu-side.css";
+
+/* @import "tailwindcss/utilities"; */
