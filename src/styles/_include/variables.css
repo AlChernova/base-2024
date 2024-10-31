@@ -1,0 +1,497 @@
+:root {
+    /* --colorPrimaryHEX: #1f5cb8;
+    --colorSecondaryHEX:#3073D7;
+    --colorPrimaryRGB: 31, 92, 184; */
+    
+    /* brend. НЕ используется*/
+    --colorBrend-Hue: 208;
+    --colorBrend: var(--colorBrend-Hue), 100%, 31%;
+
+    /* Primary */
+    --colorPrimary-Hue: 216;
+    --colorPrimary: var(--colorPrimary-Hue), 71%, 42%;
+    --colorSecondary: var(--colorBlue-L52);
+    --colorExtra-Hue: 210;
+    --colorBlue-L44:  var(--colorPrimary-Hue), 96%, 44%;
+    --colorBlue-L52:  var(--colorPrimary-Hue), 68%, 52%;
+    --colorBlue-L59:  var(--colorPrimary-Hue), 94%, 59%;
+    --colorBlue-L59:  var(--colorPrimary-Hue), 97%, 64%;
+    --colorBlue-L69:  var(--colorPrimary-Hue), 94%, 69%;
+    --colorBlue-L73:  var(--colorPrimary-Hue), 100%, 73%;
+    --colorBlue-L81:  var(--colorPrimary-Hue), 99%, 81%;
+    --colorBlue-L88:  var(--colorPrimary-Hue), 100%, 88%;
+    --colorBlue-L89:  var(--colorExtra-Hue), 51%, 89%;
+    --colorBlue-L91:  var(--colorExtra-Hue), 22%, 91%;
+    --colorBlue-L94:  var(--colorPrimary-Hue), 52%, 94%;
+    --colorBlue-L97:  var(--colorExtra-Hue), 43%, 97%;
+    
+    /* neytral colors  */
+    --colorWhite: 0, 100%, 100%;
+    --colorBlack: 0, 0%, 0%;
+    --colorGrey-L10: 0, 0%, 10%;
+    --colorGrey-L13: 0, 0%, 13%;
+    --colorGrey-L20: 0, 0%, 20%;
+    --colorGrey-L27: 0, 0%, 27%;
+    --colorGrey-L30: 0, 0%, 30%;
+    --colorGrey-L40: 0, 0%, 40%;
+    --colorGrey-L50: 0, 0%, 50%;
+    --colorGrey-L60: 0, 0%, 60%;
+    --colorGrey-L70: 0, 0%, 70%;
+    --colorGrey-L80: 0, 0%, 80%;
+    --colorGrey-L90: 0, 0%, 90%;
+
+    --fontPrimary: 'PT Sans', Arial, Helvetica, Geneva, sans-serif;
+    --fontSecondary: 'Open Sans', Tahoma, Helvetica, Geneva, sans-serif;
+    --fontSize: 16px;
+    --fontSize-xs: .75rem;
+    --fontSize-sm: .875rem;     
+    --fontSize-lg: 1.125rem;
+    --fontSize-xl: 1.25rem;
+    --fontSize-2xl: 1.375rem;
+    --fontSize-3xl: 1.5rem;
+    --fontSize-4xl: 1.625rem;
+    --fontSize-5xl: 1.75rem;
+    
+    /* Sizes (при шрифте 16рх база=4px) */
+    --unitBase: .25rem;
+    --size-2: calc(var(--unitBase) * 2);
+    --size-2_5: calc(var(--unitBase) * 2.5);
+    --size-3: calc(var(--unitBase) * 3);
+    --size-4: calc(var(--unitBase) * 4);
+    --size-5: calc(var(--unitBase) * 5);
+    --size-6: calc(var(--unitBase) * 6);
+    --size-7: calc(var(--unitBase) * 7);
+    --size-8: calc(var(--unitBase) * 8);
+    --size-9: calc(var(--unitBase) * 9);
+    --size-10: calc(var(--unitBase) * 10);
+    --size-11: calc(var(--unitBase) * 11);
+    --size-12: calc(var(--unitBase) * 12);
+    --size-13: calc(var(--unitBase) * 13);
+    --size-14: calc(var(--unitBase) * 14);
+    --size-15: calc(var(--unitBase) * 15);
+    --size-16: calc(var(--unitBase) * 16);
+    --size-20: calc(var(--unitBase) * 20);
+    --size-30: calc(var(--unitBase) * 30);
+    --size-38: calc(var(--unitBase) * 38);
+    --size-40: calc(var(--unitBase) * 40);
+    --size-58: calc(var(--unitBase) * 58);
+    --size-80: calc(var(--unitBase) * 80);
+    --size-96: calc(var(--unitBase) * 96);
+
+    --round-xs: 3px;
+    --round-sm: 5px;
+    --round-md: 15px;
+    --round-lg: 20px;
+    --round-full: 9999px;
+    --round-circle: 50%;
+    
+    --containerWide: 1900px;
+    --container: 1492px;
+    --containerInner: 1264px;
+    
+    --heightHeader: 80;
+
+    --h1-size: var(--fontSize-3xl);
+    --h2-size: var(--fontSize-lg);
+    --h3-size: var(--fontSize);
+    --h4-size: var(--fontSize-sm);
+    --h1-mb: var(--size-10);
+    --h2-mb: var(--size-8);
+    --h3-mb: var(--size-6);
+
+    --focusOutlineWidth: 4px;
+    --sizeRadioCheck: var(--size-4);
+    --padInput: var(--size-2_5) var(--size-4); 
+    --gapSection: var(--size-10);
+}
+
+
+/* точки останова:
+>=768 - sm
+>=1024 - md
+>=1256 - lg
+>=1500 - xl */
+@media (min-width: 768px) {
+    :root {}
+}
+@media (min-width: 1024px) {
+    :root {
+        --gapSection: var(--size-13);
+    }
+}
+@media (min-width: 1256px) {
+    :root {
+        --h1-size: var(--fontSize-5xl);
+        --h1-mb: var(--size-13);
+    }
+}
+@media (min-width: 1500px) {
+    :root {}
+}
+
+/* Default theme */
+[data-theme="default"] {
+    /* additional colors */
+    --colorInfo: var(--colorPrimary);
+    --colorInfoLight: var(--colorBlue-L69);
+    --colorDanger-Hue: 0;
+    --colorDanger: var(--colorDanger-Hue), 100%, 42%;
+    --colorDangerLight: var(--colorDanger-Hue), 100%, 68%;
+    --colorSuccess-Hue: 132;
+    --colorSuccess: var(--colorSuccess-Hue), 100%, 25%;
+    --colorSuccessLight: var(--colorSuccess-Hue), 59%, 61%;
+    /* status dots */
+    --colorWarning-Hue: 50;
+    --colorWarning: var(--colorWarning-Hue), 100%, 50%;
+    --colorCyan-Hue: 194;
+    --colorCyan: var(--colorCyan-Hue), 100%, 40%;
+    
+    /* Base */
+    --colorText: var(--colorBlack);
+    --colorBg: hsl(var(--colorBlue-L97));
+    --bgCard: hsl(var(--colorWhite)); 
+    --colorLink: hsl(var(--colorPrimary));
+    --colorLinkHover: hsl(var(--colorBlue-L59));
+
+    /* Shadow */
+    --shadow-size: var(--size-5);
+    --shadow-default: 0 0 var(--shadow-size) hsla(var(--colorPrimary), 0.1);
+    --shadow-glow: 0 0 var(--shadow-size) hsla(var(--colorBlue-L89), 0.6); 
+    --shadow-neytral: 0 0 var(--shadow-size) hsla(var(--colorText), 0.15);
+    --gradient-shadow-default-color: hsla(var(--colorPrimary), 0.1);
+    
+    // для fancybox и т.п.
+    --bgBackOverlay: hsla(0, 0%, 0%, 0.2);
+    ::backdrop {
+        /* backdrop не доступны любые внешние переменные */
+        --bgBackOverlay: hsla(0, 0%, 0%, 0.2);
+    }
+
+    --focusOutlineColor: hsla(var(--colorPrimary-Hue), 100%, 60%, 0.3);
+
+    /* Header */
+    --bgHeader: hsl(var(--colorBlue-L69));
+    --textHeader: hsl(var(--colorWhite));
+    --hoverBgHeader: hsl(var(--colorSecondary));
+
+    /* Footer */
+    --bgFooter: transparent;
+    --txtFooter: hsl(var(--colorGrey-L27));
+    --linkFooter: var(--colorGrey-L27);
+    --hoverLinkFooter: hsl(var(--colorSecondary));
+
+    /* Service btn. only header */
+    --colorServicesBtn: hsl(var(--colorWhite));
+    --hoverTxtServicesBtn: hsl(var(--colorPrimary));    
+
+    /* User Menu */
+    --colorBgUserMenu: var(--bgCard);
+    --colorLinkUserMenuItem: var(--colorLink);
+    --hoverBgUserMenuItem: hsl(var(--colorBlue-L91));
+    --hoverTxtUserMenuItem: hsl(var(--colorText));
+    --colorDivideUserMenu: hsla(var(--colorPrimary), 0.2);
+
+    /* Sidebar and MAin menu */
+    --bgSideBar: var(--bgCard);
+    // main menu 1 level
+    --colorSideMenuItem: hsl(var(--colorText));
+    --hoverColorSideMenuItem: hsl(var(--colorPrimary));
+    --activeBgSideMenuItem: hsla(var(--colorPrimary),.1);
+    --activeColorSideMenuItem: hsl(var(--colorText));
+    --colorSideMenuIcon: hsl(var(--colorPrimary));
+    --activeColorSideMenuIcon: hsl(var(--colorPrimary));
+    // main submenu all level
+    --colorSideSubMenuItem: hsla(var(--colorText), 0.5);
+    --hoverColorSideSubMenuItem: hsl(var(--colorPrimary));
+    --hoverBgSideSubMenuItem: none;
+    --activeColorSideSubMenuItem: hsl(var(--colorText));
+    --activeBgSideSubMenuItem: none;
+
+    /* Buttons */
+    --bgBtnDefault: hsl(var(--colorSecondary));
+    --txtBtnDefault: hsl(var(--colorWhite));
+    --hoverBgBtnDefault: hsl(var(--colorBlue-L59));
+    --colorBtnOutline: hsl(var(--colorPrimary));
+    --colorHoverBtnOutline: hsl(var(--colorSecondary));
+    --hoverTxtBtnOutline: hsl(var(--colorWhite));
+
+    /* Forms */
+    // input
+    --bgInput: var(--bgCard);
+    --colorBorderInput: hsla(var(--colorText), 0.1);
+    --colorFocusBorderInput: hsla(var(--colorSecondary), 0.8);
+    --colorIconInput:  hsla(var(--colorText), 0.4);
+    // radio and checkbox
+    --colorBorderRadio: hsla(var(--colorText), 0.6);
+    --colorBorderDisabledRadio: hsla(var(--colorText), 0.3);
+    --colorActiveRadio: var(--colorSecondary);
+    --colorTxtActiveRadio: hsl(var(--colorWhite));
+    --colorHoverRadio: hsla(var(--colorActiveRadio), 0.2);
+    --colorPressRadio: hsla(var(--colorActiveRadio), 0.4);
+    // custom select
+    --hoverBgCustomSelectItem: hsl(var(--colorGrey-L90));
+
+}
+
+/* Theme Contrast */
+[data-theme="contrast"] {
+    /* additional colors */
+    --colorInfo: var(--colorPrimary-Hue), 90%, 34%;
+    --colorInfoLight: var(--colorPrimary);
+    --colorDanger-Hue: 0;
+    --colorDanger: var(--colorDanger-Hue), 90%, 40%;
+    --colorDangerLight: var(--colorDanger-Hue), 100%, 42%;
+    --colorSuccess-Hue: 132;
+    --colorSuccess: var(--colorSuccess-Hue), 100%, 25%;
+    --colorSuccessLight: var(--colorSuccess-Hue), 59%, 61%;
+    // status dots
+    --colorWarning-Hue: 50;
+    --colorWarning: var(--colorWarning-Hue), 100%, 50%;
+    --colorCyan-Hue: 194;
+    --colorCyan: var(--colorCyan-Hue), 100%, 40%;
+    
+    /* Base */
+    --colorText: var(--colorBlack);
+    --colorBg: hsl(0, 0%, 97%);
+    --bgCard: hsl(var(--colorWhite)); 
+    --colorLink: hsl(var(--colorPrimary));
+    --colorLinkHover: hsl(var(--colorBlue-L44));
+
+    /* Shadow */
+    --shadow-size: var(--size-5);
+    --shadow-default: 0 0 var(--shadow-size) hsla(var(--colorPrimary), 0.1);
+    --shadow-glow: 0 0 var(--shadow-size) hsla(var(--colorBlue-L89), 0.6); 
+    --shadow-neytral: 0 0 var(--shadow-size) hsla(var(--colorText), 0.15);
+    --gradient-shadow-default-color: hsla(var(--colorPrimary), 0.1);
+
+    /* добавление границ к блокам с тенями, для контраста  */
+    --colorBorderGeneral: hsla(var(--colorPrimary-Hue), 10%, 80%, 1);
+    
+    // для fancybox и т.п.
+    --bgBackOverlay: hsla(0, 0%, 0%, 0.4);
+    ::backdrop {
+        --bgBackOverlay: hsla(0, 0%, 0%, 0.4);
+    }
+
+    --focusOutlineColor: hsla(var(--colorPrimary-Hue), 100%, 60%, 0.4);
+
+    /* Header */
+    --bgHeader: hsl(var(--colorPrimary));
+    // --bgHeader: hsl(var(--colorBrend));
+    --textHeader: hsl(var(--colorWhite));
+    --hoverBgHeader: hsla(var(--colorBlack), 0.2);
+
+    /* Footer */
+    --bgFooter: transparent;
+    --txtFooter: hsl(var(--colorGrey-L27));
+    --linkFooter: var(--colorGrey-L27);
+    --hoverLinkFooter: hsl(var(--colorSecondary));
+
+    /* Service Btn. only header */
+    --colorServicesBtn: hsl(var(--colorWhite));
+    --hoverTxtServicesBtn: hsl(var(--colorPrimary));    
+
+    /*  User menu */
+    --colorBgUserMenu: var(--bgCard);
+    --colorLinkUserMenuItem: var(--colorLink);
+    --hoverBgUserMenuItem: hsla(var(--colorPrimary),0.2);
+    --hoverTxtUserMenuItem: hsl(var(--colorText));
+    --colorDivideUserMenu: hsla(var(--colorPrimary), 0.3);
+
+    /* Sidebar  and MAin menu */
+    --bgSideBar: var(--bgCard);
+    // main menu 1 level
+    --colorSideMenuItem: hsl(var(--colorText));
+    --hoverColorSideMenuItem: hsl(var(--colorPrimary));
+    --activeBgSideMenuItem: hsla(var(--colorPrimary-Hue), 40%, 85%, 0.65);
+    --activeColorSideMenuItem: hsl(var(--colorText));
+    --colorSideMenuIcon: hsl(var(--colorPrimary));
+    --activeColorSideMenuIcon: hsl(var(--colorPrimary));
+    // main submenu all level
+    --colorSideSubMenuItem: hsla(var(--colorText), 1);
+    --hoverColorSideSubMenuItem: hsl(var(--colorPrimary));
+    --hoverBgSideSubMenuItem: none;
+    --activeColorSideSubMenuItem: hsl(var(--colorPrimary));
+    --activeBgSideSubMenuItem: none;    
+
+    /* Button */
+    --bgBtnDefault: hsl(var(--colorPrimary));
+    --txtBtnDefault: hsl(var(--colorWhite));
+    --hoverBgBtnDefault: hsl(var(--colorSecondary));
+    --colorBtnOutline: hsl(var(--colorPrimary));
+    --colorHoverBtnOutline: var(--colorBtnOutline);
+    --hoverTxtBtnOutline: hsl(var(--colorWhite));
+
+    /* Forms  */
+    // input and t.p.
+    --bgInput: var(--bgCard);
+    --colorBorderInput: hsla(var(--colorPrimary-Hue), 20%, 65%, 1);
+    --colorFocusBorderInput: hsla(var(--colorSecondary), 0.8);
+    --colorIconInput:  hsla(var(--colorText), 0.4);
+    // radio and checkbox
+    --colorBorderRadio: hsla(var(--colorPrimary-Hue), 20%, 55%, 1);
+    --colorActiveRadio: var(--colorSecondary);
+    --colorTxtActiveRadio: hsl(var(--colorWhite));
+    --colorHoverRadio: hsla(var(--colorActiveRadio), 0.2);
+    --colorBorderDisabledRadio: hsla(var(--colorText), 0.3);
+    --colorPressRadio: hsla(var(--colorActiveRadio), 0.4);
+    // custom select
+    --hoverBgCustomSelectItem: hsl(var(--colorGrey-L90));
+
+}
+@media (prefers-contrast: more) {
+    /* продублировать из data-theme="contrast" */
+}
+
+/* Theme dark */
+[data-theme="dark"] {
+    /* additional colors */
+    --colorInfo: var(--colorPrimary-Hue), 90%, 70%;
+    --colorInfoLight: var(--colorBlue-L69);
+    --colorDanger-Hue: 0;
+    --colorDanger: var(--colorDanger-Hue), 100%, 67%;
+    --colorDangerLight: var(--colorDanger-Hue), 100%, 68%;
+    --colorSuccess-Hue: 132;
+    --colorSuccess: var(--colorSuccess-Hue), 50%, 50%;
+    --colorSuccessLight: var(--colorSuccess-Hue), 59%, 51%;
+    // status dots
+    --colorWarning-Hue: 50;
+    --colorWarning: var(--colorWarning-Hue), 100%, 50%;
+    --colorCyan-Hue: 194;
+    --colorCyan: var(--colorCyan-Hue), 100%, 40%;
+
+    /* base */
+    --colorText: 0,0%,100%;
+    --colorBg: hsl(var(--colorPrimary-Hue), 19%, 12%);
+    --bgCard: hsl(var(--colorPrimary-Hue), 22%, 18%);
+    --colorLink: hsl(var(--colorBlue-L81));
+    --colorLinkHover: hsl(var(--colorBlue-L69));
+
+    /* Shadow */
+    --shadow-size: var(--size-5);
+    --shadow-default: 0 0 var(--shadow-size) hsla(var(--colorPrimary-Hue), 90%, 5%, 0.7);
+    --shadow-glow: 0 0 var(--shadow-size) hsla(var(--colorPrimary-Hue), 40%, 60%, 0.15);
+    --shadow-neytral: 0 0 var(--shadow-size) hsla(var(--colorBlack), 0.6);
+    --gradient-shadow-default-color: hsla(var(--colorPrimary-Hue), 90%, 5%, 0.7);
+    
+    // для fancybox и т.п.
+    --bgBackOverlay: hsla(0, 0%, 0%, 0.4);
+    ::backdrop {
+        --bgBackOverlay: hsla(0, 0%, 0%, 0.4);
+    }
+
+    --focusOutlineColor: hsla(var(--colorPrimary-Hue), 100%, 60%, 0.3);
+
+    /* Header */
+    --bgHeader: hsl(var(--colorPrimary-Hue), 26%, 31%);
+    --textHeader: hsl(var(--colorWhite));
+    --hoverBgHeader: hsl(var(--colorSecondary));
+
+    /* Footer */
+    --bgFooter: transparent;
+    --txtFooter: hsl(var(--colorGrey-L80));
+    --linkFooter: var(--colorGrey-L80);
+    --hoverLinkFooter: hsl(var(--colorBlue-L81));
+
+    /* ServiceBtn, only Header. */
+    --colorServicesBtn: hsl(var(--colorWhite));
+    --hoverTxtServicesBtn: hsl(var(--colorPrimary));
+
+    /* User Menu */
+    --colorBgUserMenu: var(--bgCard);
+    --colorLinkUserMenuItem: var(--colorLink);
+    --hoverBgUserMenuItem: hsla(var(--colorPrimary),.3);
+    --hoverTxtUserMenuItem: hsl(var(--colorText));
+    --colorDivideUserMenu: hsla(var(--colorPrimary), 0.2);
+
+    /* Sidebar  and MAin menu */
+    --bgSideBar: var(--bgCard);
+    // main menu 1 level
+    --colorSideMenuItem: hsl(var(--colorText));
+    --hoverColorSideMenuItem: var(--colorLink);
+    --activeBgSideMenuItem: hsla(var(--colorPrimary),.3);
+    --activeColorSideMenuItem: hsl(var(--colorText));
+    --colorSideMenuIcon: var(--colorLink);
+    --activeColorSideMenuIcon: var(--colorLink);
+    // main submenu all level
+    --colorSideSubMenuItem: hsla(var(--colorText), 0.75);
+    --hoverColorSideSubMenuItem: var(--colorLink);
+    --hoverBgSideSubMenuItem: none;
+    --activeColorSideSubMenuItem: var(--colorLink);
+    --activeBgSideSubMenuItem: none;     
+
+    /* Buttons */
+    --bgBtnDefault: hsl(var(--colorSecondary));
+    --txtBtnDefault: hsl(var(--colorWhite));
+    --hoverBgBtnDefault: hsl(var(--colorBlue-L59));
+    --colorBtnOutline: hsl(var(--colorPrimary-Hue), 80%, 70%);
+    --colorHoverBtnOutline: hsl(var(--colorSecondary));
+    --hoverTxtBtnOutline: hsl(var(--colorWhite));
+
+    /* Forms */
+    // input 
+    --bgInput: var(--bgCard);
+    --colorBorderInput: hsla(var(--colorText), 0.3);
+    --colorFocusBorderInput: hsl(var(--colorBlue-L69));
+    --colorIconInput: hsla(var(--colorText), 0.4);
+    // radio and checkbox
+    --colorBorderRadio: hsla(var(--colorText), 0.6);
+    --colorBorderDisabledRadio: hsla(var(--colorText), 0.3);
+    --colorActiveRadio: var(--colorBlue-L69);
+    --colorTxtActiveRadio: hsl(var(--colorWhite));
+    --colorHoverRadio: hsla(var(--colorActiveRadio), 0.4);
+    --colorPressRadio: hsla(var(--colorActiveRadio), 0.4);
+    // custom select
+    --hoverBgCustomSelectItem: hsla(var(--colorPrimary),.3);
+
+}
+@media (prefers-color-scheme: dark) {
+    /* продублировать из data-theme="dark" */
+}
+
+
+/* ----------------------------- Шрифты ----------------------------- */
+/*  primary */
+@font-face {
+    font-family: 'PTSans';
+    src: url('../fonts/PTSans-Regular.woff2') format('woff2'),
+        url('../fonts/PTSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'PTSans';
+    src: url('../fonts/PTSans-Bold.woff2') format('woff2'),
+        url('../fonts/PTSans-Bold.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/*  secondary */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular.woff2') format('woff2'),
+        url('../fonts/OpenSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Medium.woff2') format('woff2'),
+        url('../fonts/OpenSans-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Bold.woff2') format('woff2'),
+        url('../fonts/OpenSans-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+

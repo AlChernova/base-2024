@@ -1,33 +1,19 @@
 <header class="header">
     <div class="header__container">
         <div class="header__left">
-            {# logo + knopka + title #}
+            {# logo + title #}
             <div class="header__title titleServise">
-                <a class="titleServise__link" href="/" aria-label="Перейти на главную Эл. университета">
-                <span class="titleServise__img">{% include 'logos/logo-eu-full.njk' %}</span>
-                <span class="titleServise__imgSmall">{% include 'logos/logo-kfu-mini.njk' %}</span>
-                    {# <img class="titleServise__img" src="images/logo-ias-eu.svg" alt="ИАС Электронный университет"> #}
-                    {# <img class="titleServise__imgSmall" src="images/kfu_logo_gerb.svg" alt="ИАС Электронный университет"> #}
-                </a>
+                <a class="titleServise__link" href="/">База</a>
                 <span class="titleServise__divider" role="presentation"></span>
-                <strong class="titleServise__name">{{ eleventyNavigation.module }}</strong>
+                <strong class="titleServise__name">{{ eleventyNavigation.title }}</strong>
             </div>
             <div class="header__btn">
-                <!-- временно вставить ссылку на ЛК нынешний -->
-                <a class="header__serviceBtn servicesBtn servicesBtn--shortMobile" href="https://shelly.kpfu.ru/"><span class="servicesBtn__hamburger hamburger burger1"><span></span></span><span class="servicesBtn__text">Сервисы</span></a>
-                {# Здесь будет открываться плашка с списком
-                <button class="servicesBtn" type="button" aria-expanded="false" aria-controls="services"><span class="servicesBtn__hamburger hamburger burger1"><span></span></span><span class="servicesBtn__text">Сервисы</span></button> #}
                 <!-- для мобильного меню -->
                 <button class="header__openMenu" type="button" aria-expanded="false" aria-controls="sidebar" aria-label="Открыть меню"><span class="header__openMenu-hamburger hamburger burger1"><span></span></span></button>
             </div>
         </div>
         <div class="header__right">
-            <ul class="header__utils utils">
-                {% include 'component/utils-menu.njk' %}
-            </ul>
-            <div class="header__userMenu userMenu">
-                {% include 'component/user-menu.njk' %}
-            </div>
+            {# --- #}
         </div>
     </div>
 

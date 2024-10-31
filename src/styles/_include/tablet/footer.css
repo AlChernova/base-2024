@@ -1,0 +1,10 @@
+.footer {
+    &__navLeft {gap: var(--size-8);}
+    &__logo-img {width: 140px;}
+    &__nav {
+        display: flex; align-items: flex-start;
+        justify-content: space-between;
+        gap: 0 var(--size-10);
+    }
+    &__navUtils {margin-top: 0; text-align: right}
+}

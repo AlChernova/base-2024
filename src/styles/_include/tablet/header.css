@@ -1,0 +1,15 @@
+.titleServise {
+    gap: var(--size-5);
+    
+    &__name {
+        font-weight: bold;
+        font-size: var(--fontSize);
+    }
+}
+
+.header {
+    &__left {
+        gap: var(--size-9);
+    }
+
+}

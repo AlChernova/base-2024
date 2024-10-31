@@ -1,0 +1,11 @@
+.footer {
+    &__nav {
+        align-items: center;
+        justify-content: flex-start;
+    }
+    &__navUtils {
+        flex-direction: row;
+        gap: 0 var(--size-6);
+        text-align: left;
+    }
+}

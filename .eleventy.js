@@ -8,7 +8,6 @@ const postcssMixins = require("postcss-mixins");
 const postcssNested = require("postcss-nested");
 const postcssCsso = require('postcss-csso'); // error for @container query
 const postcssComment = require('postcss-comment');
-const tailwind = require('tailwindcss');
 
 const esbuild = require('esbuild');
 
@@ -67,8 +66,6 @@ module.exports = function(config){
 		'./src/styles/main.css',
 		'./src/styles/tablet.css',
 		'./src/styles/desctop.css',
-		'./src/styles/modules/vneuchebka.css',
-		'./src/styles/modules/catalog-ris.css',
 	];
   config.addExtension('css', {
     outputFileExtension: 'css',

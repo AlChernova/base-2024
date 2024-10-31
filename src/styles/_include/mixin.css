@@ -1,0 +1,59 @@
+@define-mixin scrollbarThin $trek-color1: hsla(var(--colorText), 0.2), $bg-color2:hsla(var(--colorText), 0.1), $webkit-color: hsla(var(--colorText), 0.7) {
+    scrollbar-width: thin;
+    scrollbar-color: $trek-color1 $bg-color2;
+    scrollbar-gutter: stable;
+
+    &::-webkit-scrollbar {
+        height: .325rem; width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: hsla(var(--colorText),0);
+        border: 1px solid hsla(var(--colorText),.1);
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $webkit-color;
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb:vertical {
+        min-height:1.5rem;
+    }
+    &::-webkit-scrollbar-thumb:horizontal {
+        min-width: 1.5rem;
+    }
+}
+
+@define-mixin afbf-decor $txt: "" {
+    display: block; 
+    position: absolute;
+    content: $txt; 
+}
+
+/* видно для доступности, но не глазу */
+@define-mixin visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;   
+}
+/* отмена невидимости */
+@define-mixin unVisuallyHidden {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: inherit;
+    border: unset;
+    padding: unset;
+    clip-path: inherit;
+    clip: inherit;
+    overflow: inherit;   
+}
+@define-mixin card {
+    background-color: var(--bgCard);
+    box-shadow: var(--shadow-default);
+}

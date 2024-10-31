@@ -1,0 +1,27 @@
+.titleServise {
+    @media (min-width: 1256px) {
+        &__img {display: block;}
+        &__imgSmall {display: none;}
+    
+        &__divider {display: block;}
+    }
+}
+
+.header {
+    
+    @media (min-width: 1256px) {
+        &__serviceBtn {
+            display: flex;
+        }
+
+        &__openMenu {
+            display: none;
+        }
+        &__utils {}
+
+        &__container {
+            padding-left: var(--size-9); 
+            padding-right: var(--size-13);
+        }
+    }
+}

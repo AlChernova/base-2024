@@ -1,0 +1,49 @@
+.sidebar  {
+    --inset: var(--size-9) 0;
+    /*  */
+}   
+
+.innerPage {
+    --insetV: var(--size-9);
+    --insetH: var(--size-8);
+} 
+
+
+@media (min-width: 1256px) {
+    :root {
+        --widthSidebar: var(--size-58);
+    }
+
+    .sidebar  {
+        --inset: var(--size-14) 0;
+
+        padding: 0;
+        overflow: auto;
+        box-shadow: var(--shadow-default);
+
+        &__content {
+            box-shadow: none;
+            transform: translateX(0);
+        }
+        &__utils {
+            display: none;
+        }
+    }
+    .innerPage {
+        --insetV: var(--size-14);
+        --insetH: var(--size-13);
+
+        margin-left: var(--widthSidebar);
+        width: calc(100% - var(--widthSidebar));
+        
+        &__content {
+            max-width: calc(1920px -  var(--widthSidebar));
+        }
+    }
+}
+
+@media (min-width: 1700px) {
+    :root {
+        --widthSidebar: var(--size-80);
+    }    
+}

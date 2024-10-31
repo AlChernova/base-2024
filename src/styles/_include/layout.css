@@ -1,0 +1,124 @@
+:root {
+    --widthSidebar: var(--size-96);
+}
+.sidebar {
+    --insetV: var(--size-4);
+
+    position: fixed;
+    z-index: 2; 
+    left: 0; right: auto;
+    /* top: calc(var(--heightHeader) * 1px); */
+    width: 100%; max-width: var(--widthSidebar) ;
+    height: calc(100vh - (var(--heightHeader) * 1px));
+    padding: 0;
+    overflow: hidden;
+    pointer-events: none;
+    
+    &__content {
+        position: static;
+        width: 100%; height: 100%;
+        padding: var(--insetV) 0;
+        background-color: var(--bgSideBar);
+        box-shadow: var(--shadow-default);
+        overflow: auto;
+        pointer-events: all;
+        transform: translateX(-100%);
+        transition: transform 0.2s ease-in-out; 
+
+        @mixin scrollbarThin;
+        scrollbar-gutter: inherit;
+
+        &.is-open {
+            transform: translateX(0%);
+            /* animation: leftToRight 0.5s ease-in-out; */
+        }
+        &.hide {
+            animation: rightToLeft 0.5s ease-in-out;
+        }
+    }
+
+    &__utils {
+        margin: 0 var(--size-5) var(--insetV) var(--size-6);
+    }
+
+    @media (min-width: 380px) {
+        & {
+            padding-right: var(--size-4);
+        }
+    }
+
+    [data-theme="contrast"] &__content {
+        border-right: 1px solid var(--colorBorderGeneral);
+    }
+}
+@keyframes leftToRight {
+    from {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+  
+@keyframes rightToLeft {
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+.innerPage {
+    --insetV: var(--size-9);
+    --insetH: var(--size-4);
+
+    position: relative;
+    /* z-index: 1; */
+    display: flex; flex-direction: column;
+    align-items: stretch; justify-content: space-between;
+    min-height: calc(100vh - (var(--heightHeader) * 1px));
+
+    &__container {
+        padding: var(--insetV) var(--insetH);
+    }
+
+    &__content {}
+
+    &__footer {
+        padding: 0 var(--insetH);
+        margin-top: var(--insetV);
+    }
+
+    &__section {
+        margin: var(--gapSection) 0 0;
+    }
+}
+
+.offset-services {
+    position: fixed;
+    z-index: 5;
+    /* top: calc(var(--heightHeader) * 1px); */
+    left: 0; right: 0;
+    width: 100%;
+    height: calc(100vh - (var(--heightHeader)*1px));
+    padding: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+.services {
+    width: 100%;
+    background-color: var(--bgSideBar);
+    overflow: auto;
+    pointer-events: all;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease-in-out; 
+
+    @mixin scrollbarThin;
+    scrollbar-gutter: inherit;    
+
+    &__container {
+        padding: var(--size-5);
+    }
+}
+

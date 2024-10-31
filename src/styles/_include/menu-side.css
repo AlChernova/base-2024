@@ -1,0 +1,169 @@
+.menuSide {
+    &__list {}
+    &__submenu {
+        display: none;
+        margin-left: var(--size-5); 
+    }
+
+    &__item:not(:last-child) {
+        margin-bottom: var(--size-3);
+    }
+    &__link {
+        display: flex;
+        gap: var(--size-3);
+        width: 100%;
+        padding: var(--size-3) var(--size-5) var(--size-3) var(--size-8);
+        text-decoration: none;
+        text-align: left;
+        color: var(--colorSideMenuItem);
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        
+        &.selected {
+            background-color: var(--activeBgSideMenuItem);
+            color: var(--activeColorSideMenuItem);
+        }
+
+        &:focus, &:focus-visible {
+            color: var(--hoverColorSideMenuItem);
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                color: var(--hoverColorSideMenuItem);
+            }
+            &.selected:hover {
+                /* color: var(--colorSideMenuItem); */
+                /* text-decoration: underline; */
+            }
+        }
+    }
+    &__icon {
+        flex-shrink: 0;
+        font-size: var(--fontSize-lg);
+        color: var(--colorSideMenuIcon);
+        pointer-events: none;
+        transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+    }  
+    &__arrow {
+        flex-shrink: 0;
+        margin-left: auto;
+        height: var(--fontSize-lg);
+        font-size: var(--size-2_5); 
+        opacity: 0.8;
+        pointer-events: none;
+        transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }   
+    .selected &__arrow,
+    [aria-expanded="true"] &__arrow {
+        transform: rotate(180deg);
+    }
+    .selected > &__subcontainer > &__submenu {
+        display: block;
+    }
+
+    [data-theme="contrast"] &__link {
+        &.selected {
+            --colorSideMenuIcon: var(--activeColorSideMenuIcon);
+
+            color: var(--activeColorSideMenuItem);
+        }
+
+        &:focus, &:focus-visible {
+            text-decoration: underline;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+.subMenuSide {
+    margin: var(--size-2) 0 var(--unitBase) calc(var(--size-13) + 2px);
+
+    & & {margin-left: var(--size-5); margin-right: 0;}
+    &__submenu {
+        display: none;
+    }
+
+    /* &__item:not(:last-child) {margin-bottom: var(--size-2_5);} */
+
+    &__link {
+        display: flex;
+        gap: var(--size-3);
+        width: 100%;
+        padding: calc(var(--unitBase) * 1.5) var(--size-5) calc(var(--unitBase) * 1.5) var(--size-2);
+        color: var(--colorSideSubMenuItem);
+        text-align: left;
+        text-decoration: none;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+        &.selected {
+            color: var(--activeColorSideSubMenuItem);
+            background-color: var(--activeBgSideSubMenuItem);
+        }
+
+        &:focus, &:focus-visible {
+            color: var(--hoverColorSideSubMenuItem);
+            background-color: var(--hoverBgSideSubMenuItem);
+        }
+
+        @media (hover: hover) {
+            &:hover, &:active {
+                background-color: var(--hoverBgSideSubMenuItem);
+                color: var(--hoverColorSideSubMenuItem);
+            }
+        }
+    }
+    &__icon {display: none;}
+    
+    &__arrow {
+        flex-shrink: 0;
+        margin-left: auto;
+        height: var(--fontSize-lg);
+        font-size: var(--size-2_5); 
+        opacity: 0.8;
+        pointer-events: none;
+        transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }   
+    .selected &__arrow,
+    [aria-expanded="true"] &__arrow {
+        transform: rotate(180deg);
+    }
+
+    .selected > &__subcontainer > &__submenu {
+        display: block;
+    }
+
+    [data-theme="contrast"] &__link {
+
+        &.selected {font-weight: bold}
+
+        &:focus, &:focus-visible {
+            /* color: var(--colorText); */
+        }
+
+        @media (hover: hover) {
+            &:hover, &:active {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    [data-theme="dark"] &__link {
+
+        &.selected {font-weight: bold;}
+
+        &:focus, &:focus-visible {
+            /* text-decoration: underline; */
+            color: var(--colorText);
+        }
+
+        @media (hover: hover) {
+            &:hover, &:active {
+                text-decoration: underline;
+            }
+        }
+    }
+}

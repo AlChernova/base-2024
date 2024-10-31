@@ -1,0 +1,103 @@
+.titleServise {
+    display: flex; align-items: center;
+    gap: var(--size-3);
+
+    &__link {
+        flex-shrink: 0;
+        display: block;
+        height: var(--size-10);
+        line-height: 0;
+        color: currentColor;
+
+        @media (hover: hover) {
+            &:hover {color: var(--textHeader);}
+        }
+    }
+    
+    &__img {
+        display: none; height: 100%; max-height: 100%;
+        
+        svg {max-height: 100%; height: 100%; width: auto;}
+        svg .fill {fill: currentColor;}
+    }
+    &__imgSmall {
+        display: block;
+        height: 100%; max-height: 100%;
+                
+        svg {max-height: 100%; height: 100%; width: auto;}
+        svg .fill {fill: currentColor;}
+    }
+    
+    &__divider {
+        flex-shrink: 0;
+        display: none;
+        align-self: stretch;
+        width: 1px; 
+        background: currentColor;
+    }
+
+    &__name {
+        font-weight: 500;
+        font-size: var(--fontSize-sm);
+    }
+}
+.header {
+    position: sticky;
+    z-index: 30;
+    top: 0; left: 0;
+    width: 100%; max-width: 100%;
+    height: calc(var(--heightHeader) * 1px);
+
+    background-color: var(--bgHeader);
+
+    color: var(--textHeader);
+    font-family: var(--fontSecondary);
+
+    &__container {
+        padding: 0 var(--size-5);
+        display: flex; justify-content: space-between;
+        align-items: center;
+        gap: var(--size-3);
+    }
+
+    &__left {
+        display: flex; flex-direction: row-reverse;
+        align-items: center; gap: var(--size-5);
+        padding: var(--size-5) 0;
+    }
+    &__right {
+        align-self: stretch;
+        display: flex;
+        gap: var(--size-9);
+    }
+  
+    &__btn {
+        align-self: flex-start;
+        display: flex; align-items: center;
+    }
+    &__serviceBtn {
+        --colorServicesBtn: var(--textHeader);
+
+        display: none;
+    }
+    &__openMenu {
+        aspect-ratio: 1 / 1;
+        padding: var(--unitBase);
+        border-radius: var(--round-sm);
+        /* border: 1px solid currentColor; */
+
+        &[aria-expanded="true"] {
+            background: var(--textHeader);
+            color: var(--bgHeader);
+        }
+    }
+
+    &__utils {
+        display: none;
+    }
+
+    &__userMenu {
+        --bgControlActive: var(--hoverBgHeader);
+        --bgControlHover: var(--hoverBgHeader);
+    }
+}

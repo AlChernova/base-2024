@@ -1,0 +1,12 @@
+/* форма */
+.formDefault {
+    &__row {
+        flex-direction: row;
+        align-items: flex-end;
+    }    
+
+
+    &__footer {gap: var(--size-5); flex-direction: row;}
+
+    &__foot-right {justify-content: flex-end;}
+}

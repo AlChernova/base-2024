@@ -1,0 +1,146 @@
+/* кнопки (кнопки, ссылки)  */
+.button {
+  display: inline-block;
+  padding: var(--size-2_5) var(--size-6);
+  text-align: center;
+  text-decoration: none;
+  vertical-align: baseline;
+  font-size: 1em;
+  line-height: 1.15em;
+  border-radius: var(--round-full);
+  border: 1px solid transparent;
+  background-color: hsla(var(--colorText), 0.3);
+  color: hsl(var(--colorText));
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Hover effect */
+  @media (hover: hover) {
+    &:hover {
+      background-color: hsla(var(--colorText), 0.2);
+      color: hsl(var(--colorText));
+    }
+  }
+  &:focus-visible {
+    color: hsl(var(--colorText));
+  }
+  &:focus {
+    color: hsl(var(--colorText));
+  }
+
+  &:disabled,
+  &._disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.3;
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    [data-theme="contrast"] & {
+      opacity: 0.6;
+    }
+  }
+
+  &--rectangle {
+    border-radius: var(--round-sm);
+  }
+
+  &--wide {
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+  &--wide100 {
+    width: 100%;
+  }
+  &--low {
+    padding-top: calc(var(--unitBase) * 2);
+    padding-bottom: calc(var(--unitBase) * 2);
+  }
+  &--withicon {
+    display: inline-flex; justify-content: center; align-items: center;
+    gap: var(--size-3); 
+    text-align: left;
+
+    .icok {
+      font-size: var(--size-4);
+    }
+  }
+}
+
+.btn-default {
+  background-color: var(--bgBtnDefault);
+  color: var(--txtBtnDefault);  
+
+  &:focus-visible {
+    color: var(--txtBtnDefault);
+  }
+  &:focus {
+    color: var(--txtBtnDefault);
+  }
+  
+  @media (hover: hover) {
+    &:hover {  
+      background-color: var(--hoverBgBtnDefault);  
+      color: var(--txtBtnDefault);  
+    }
+  }
+  
+  &:disabled,
+  &._disabled {}
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--colorBtnOutline);
+  color: var(--colorBtnOutline);
+
+  @media (hover: hover) {
+    &:hover {  
+      color: var(--hoverTxtBtnOutline);
+      background-color: var(--colorHoverBtnOutline);
+      border-color: transparent;
+    }
+  }
+
+  &:focus-visible {
+    color: var(--colorBtnOutline);
+  }
+  &:focus {
+    color: var(--hoverTxtBtnOutline);
+    background-color: var(--colorHoverBtnOutline);
+    border-color: transparent;
+  }
+
+  &:disabled,
+  &._disabled {}  
+  
+  &--neytral {
+    --colorBtnOutline: hsla(var(--colorText), 0.8);
+    --colorHoverBtnOutline: var(--colorBtnOutline);
+  }
+  &--danger {
+    --colorBtnOutline: hsla(var(--colorDanger), 1);
+    --focusOutlineColor: hsla(var(--colorDanger), 0.2);
+    --colorHoverBtnOutline: var(--colorBtnOutline);
+  }
+
+  [data-theme="contrast"] & {
+      &--danger {}
+  }
+
+  [data-theme="dark"] & {
+    &--neytral {
+      --colorBtnOutline: hsla(var(--colorText), 0.65);
+      --colorHoverBtnOutline: hsla(var(--colorText), 0.35);
+    }
+  }
+
+  /* Для лейблов чекбоксов или радио*/
+  :checked ~ & {
+    background-color: var(--bgBtnDefault);
+    color: var(--txtBtnDefault);
+    border-color: transparent;
+  }
+}

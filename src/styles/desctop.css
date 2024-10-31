@@ -1,6 +1,6 @@
 @import "_include/mixin.css";
 @import "_include/desctop/base.css";
-@import "_include/desctop/components.css";
+/* @import "_include/desctop/components.css"; */
 @import "_include/desctop/header.css";
 @import "_include/desctop/footer.css";
 @import "_include/desctop/layout.css";
