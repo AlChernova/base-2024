@@ -5,7 +5,7 @@
 
 @import "_include/buttons.css"; 
 @import "_include/forms.css"; 
-/* @import "_include/components.css";  */
+@import "_include/components.css"; 
 @import "_include/header.css";
 @import "_include/footer.css";
 @import "_include/layout.css";

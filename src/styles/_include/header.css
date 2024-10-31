@@ -5,8 +5,6 @@
     &__link {
         flex-shrink: 0;
         display: block;
-        height: var(--size-10);
-        line-height: 0;
         color: currentColor;
 
         @media (hover: hover) {

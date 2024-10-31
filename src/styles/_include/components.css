@@ -1,0 +1,333 @@
+/* иконки */
+.icok {
+    display: inline-block; 
+    flex-shrink: 0;
+    width: 1em; height: 1em; 
+    text-align: center;
+    transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    
+    svg {width: 100%; height: 100%; fill: currentColor; display: block;}
+}
+
+.icon-text {
+  display: inline-flex;
+  gap: var(--size-3);
+}
+  
+/* гамбургер */
+.hamburger {
+  font-size: var(--size-5); /* задает размер эелемента */
+  cursor: pointer;
+  padding: 0.5em 0em; /* touch area size */
+  background: none; 
+  --widthLine: 1em;
+  --heightLine: 2px;
+  --color: currentColor;
+  --marginLine: 6px;
+  --round: 12px;
+
+  & > span {
+    display: block;
+    width: var(--widthLine); height: var(--heightLine);
+    border-radius: var(--round); background: var(--color);
+    transition: color 0.2s ease;
+
+    &::before,
+    &::after {
+      @mixin afbf-decor;
+      width: var(--widthLine); height: var(--heightLine);
+      background: var(--color);
+      border-radius: var(--round);
+      transition: font-size 0s,  color 0.2s ease;
+    }
+    &::before {
+      margin-top: calc(var(--marginLine) * -1);
+    }
+    &::after {
+      margin-top: var(--marginLine);
+    }
+  }
+  /* анимация активного бургера */
+  &.burger1 {
+      transition: transform 0.3s, font-size 0s;
+      transition-timing-function: cubic-bezier(0.68, -0.35, 0.265, 1.35);
+
+      & > span {
+          transition: transform 0.1s 0.3s, font-size 0s;
+          &::before,
+          &::after {
+              transition: transform 0.3s 0.0s, font-size 0s;
+          }
+      }
+      .is-active  &,
+      [aria-expanded="true"]  & {
+          transform: rotate(180deg);
+
+          > span::before {
+              transform: rotate(45deg) translate(24%, 196%);
+          }
+
+          > span {background-color: transparent;}
+
+          > span::after {
+              transform: rotate(-45deg) translate(24%, -196%);
+          }
+      }
+  }
+}
+
+
+
+dialog {
+  color: hsl(var(--colorText));
+}
+.winModal {
+  --inset: var(--size-5);
+  --maxWidth: auto; 
+
+  position: fixed;
+  background: none;
+  overflow: inherit;
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-2);
+    animation: showModal 0.5s;
+  }
+  &.hide {
+    animation: hideModal 0.5s;
+  }
+  &::backdrop {
+    background-color: var(--bgBackOverlay);
+  }  
+  
+  &__wrapper {
+    align-self: stretch;
+    position: relative;
+    max-height: 90vh;
+    max-width: var(--maxWidth);
+    padding: var(--inset);
+    background-color: var(--bgCard);
+    border-radius: var(--round-md);
+    box-shadow: var(--shadow-glow);    
+    overflow: auto;
+    @mixin scrollbarThin;
+    scrollbar-gutter: auto;
+  }
+
+  &__closeBtn {
+    align-self: flex-end; 
+    line-height: 0;
+    padding: var(--size-2);
+    background-color: var(--bgCard);
+    border-radius: var(--round-circle);
+    transition: background-color 0.2s ease-in-out;
+
+    &:focus-visible {
+      color: var(--colorLinkHover);
+    }
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--activeBgSideMenuItem);
+        color: var(--colorLink);
+      }
+    }
+  }
+
+  .innerPage__content &:focus-visible {
+    outline: none;  
+  }
+  &__head {
+    margin-top: 0;
+    text-wrap: balance;
+  }
+  &__footer {
+    margin-top: var(--size-10);
+  }
+  &__alert-icon {
+    display: inline-flex; align-items: center; justify-content: center; 
+    padding: var(--size-4); 
+    margin-bottom: var(--size-4);
+    aspect-ratio: 1 / 1;
+    border-radius: var(--round-circle);
+    border: 2px solid currentColor;
+    font-size: var(--size-5);    
+
+    &--success {color: hsl(var(--colorInfo));}
+    &--danger {
+      --focusOutlineColor: hsla(var(--colorDanger), 0.2);
+      color: hsl(var(--colorDanger));
+    }
+  }
+
+  &__alert-message {
+    margin-top: var(--size-8);
+
+    &--long {text-align: left;}
+  }
+
+  &--alert {
+    --maxWidth: 400px;
+    text-align: center;
+  }
+  &--alert &__head {
+    padding-right: 0;
+  }
+  &--alert &__footer {
+    display: flex; align-items: center; justify-content: center;
+    gap: var(--size-3);
+  }
+}
+@keyframes showModal {
+  from {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes hideModal {
+  from {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+}
+
+/* ==== iframe popups. plugin Fancybox */
+/* внешнее */ 
+.page-inner {
+  .fancybox__container {
+    --fancybox-bg: var(--bgBackOverlay);
+  }
+  
+  .f-button.is-close-btn {
+    --f-button-svg-stroke-width: 1px;
+  }
+  .fancybox__content>.f-button.is-close-btn {
+    --f-button-svg-width: 22px;
+    --f-button-svg-height: 22px;
+    --f-button-color: hsl(var(--colorText));
+    --f-button-bg: var(--bgCard);
+    --f-button-border-radius: var(--round-circle);
+    --f-button-hover-color: var(--colorLink);
+    --f-button-hover-bg:  var(--activeBgSideMenuItem);
+    top: var(--unitBase); right: var(--unitBase);
+  }
+  .f-button:focus-visible {
+    box-shadow: none;
+    outline: 4px solid var(--focusOutlineColor);
+    outline-offset: 0;
+  }
+}
+.fancybox__content {
+  padding: 0;
+  background-color: var(--bgCard);
+  border-radius: var(--round-md);
+  box-shadow: var(--shadow-glow); 
+  color: var(--colorText);
+}
+/* внутреннее */
+.page-popup {
+  --inset: var(--size-5);
+  
+  padding: var(--inset);
+  background: transparent;
+}
+/* ==END == iframe popups. plugin Fancybox */
+
+/* пагинация */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--unitBase);
+
+  &__item {
+    &:first-child {margin-right: var(--size-3);}
+    &:last-child {margin-left: var(--size-3);}
+
+    @media (max-width: 360px) {
+      &:nth-of-type(4),
+      &:nth-of-type(6) {display: none}
+    }
+  }
+  &__num {
+    display: flex; align-items: center; justify-content: center;
+    min-width: var(--size-8); height: var(--size-8);
+    padding: var(--unitBase);
+    border-radius: var(--round-sm);
+    border: 1px solid transparent;
+    font-size: var(--fontSize-sm);
+    color: hsl(var(--colorText));
+    text-decoration: none;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+
+    &:focus-visible {
+      border-color: var(--colorLink);
+      color: var(--colorLink);
+    }
+    @media (hover: hover) {
+      &:hover {
+        border-color: var(--colorLink);
+        color: var(--colorLink);
+      }
+    }
+    
+    &--active, &--active:hover {
+      border-color: transparent;
+      background-color: var(--bgBtnDefault);
+      color: var(--txtBtnDefault);
+    }
+  }
+
+  &__arrow {
+    display: flex; align-items: center; justify-content: center;
+    width: var(--size-8); height: var(--size-8);
+    border-radius: var(--round-circle);
+    background: hsla(var(--colorText), 0.15);
+    font-size: var(--fontSize-xs);
+    color: hsl(var(--colorText));
+    transition: background-color 0.2s ease-out;
+
+    &:focus-visible {
+      background-color: var(--bgBtnDefault);
+      color: var(--txtBtnDefault);
+    }
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--bgBtnDefault);
+        color: var(--txtBtnDefault);
+      }
+    }
+
+    &--disable, &--disable:hover {
+      color: hsla(var(--colorText), 0.4);
+      background-color: hsla(var(--colorText), 0.15);
+    }
+  }
+
+  
+}
+
+/* ссылка на файл\документ */
+.filelink {
+    display: flex;  
+    justify-content: space-between; 
+    align-items: flex-start; 
+    gap: var(--size-4);
+
+    &__title .icok {color: hsl(var(--colorText));}
+    &__action {
+      flex-shrink: 0;
+    }
+  
+}
+
+

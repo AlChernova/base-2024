@@ -19,7 +19,8 @@
         width: 100%; height: 100%;
         padding: var(--insetV) 0;
         background-color: var(--bgSideBar);
-        box-shadow: var(--shadow-default);
+        /* border-right: 1px solid hsl(var(--colorPrimary)); */
+        /* box-shadow: var(--shadow-default); */
         overflow: auto;
         pointer-events: all;
         transform: translateX(-100%);

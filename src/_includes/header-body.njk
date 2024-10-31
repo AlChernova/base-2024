@@ -14,10 +14,14 @@
         <link rel="preload" href="/fonts/OpenSans-Bold.woff2" crossorigin as="font" type="font/woff2">
 
         <!-- plugins  -->
-        <link rel="stylesheet" href="scripts/fancybox/fancybox-5.0.min.css"/>
-        <link rel="stylesheet" href="scripts/choices/choices.css"/>
-        <link rel="stylesheet" href="scripts/hotel-datepicker/hotel-datepicker.css"/>
-        <link rel="stylesheet" href="scripts/autosuggest/autosuggest.min.css">
+        <link rel="stylesheet" href="/scripts/fancybox/fancybox-5.0.min.css"/>
+        <link rel="stylesheet" href="/scripts/choices/choices.css"/>
+        <link rel="stylesheet" href="/scripts/hotel-datepicker/hotel-datepicker.css"/>
+        <link rel="stylesheet" href="/scripts/autosuggest/autosuggest.min.css">
+        <!-- индивидуальные  -->
+        {% if pluginCss %}
+            <link rel="stylesheet" href="{{ pluginCss }}">
+        {% endif %}
 
         <!-- main styles  -->
         <link rel="stylesheet" href="styles/main.css">

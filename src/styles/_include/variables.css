@@ -8,10 +8,10 @@
     --colorBrend: var(--colorBrend-Hue), 100%, 31%;
 
     /* Primary */
-    --colorPrimary-Hue: 216;
-    --colorPrimary: var(--colorPrimary-Hue), 71%, 42%;
+    --colorPrimary-Hue: 208;
+    --colorPrimary: var(--colorPrimary-Hue), 71%, 41%;
     --colorSecondary: var(--colorBlue-L52);
-    --colorExtra-Hue: 210;
+    --colorExtra-Hue: 200;
     --colorBlue-L44:  var(--colorPrimary-Hue), 96%, 44%;
     --colorBlue-L52:  var(--colorPrimary-Hue), 68%, 52%;
     --colorBlue-L59:  var(--colorPrimary-Hue), 94%, 59%;
@@ -39,6 +39,7 @@
     --colorGrey-L70: 0, 0%, 70%;
     --colorGrey-L80: 0, 0%, 80%;
     --colorGrey-L90: 0, 0%, 90%;
+    --colorGrey-L95: 0, 0%, 95%;
 
     --fontPrimary: 'PT Sans', Arial, Helvetica, Geneva, sans-serif;
     --fontSecondary: 'Open Sans', Tahoma, Helvetica, Geneva, sans-serif;
@@ -148,7 +149,7 @@
     
     /* Base */
     --colorText: var(--colorBlack);
-    --colorBg: hsl(var(--colorBlue-L97));
+    --colorBg: hsl(var(--colorWhite));
     --bgCard: hsl(var(--colorWhite)); 
     --colorLink: hsl(var(--colorPrimary));
     --colorLinkHover: hsl(var(--colorBlue-L59));
@@ -170,29 +171,20 @@
     --focusOutlineColor: hsla(var(--colorPrimary-Hue), 100%, 60%, 0.3);
 
     /* Header */
-    --bgHeader: hsl(var(--colorBlue-L69));
+    --bgHeader: hsl(var(--colorGrey-L20));
     --textHeader: hsl(var(--colorWhite));
     --hoverBgHeader: hsl(var(--colorSecondary));
 
-    /* Footer */
+    /* Footer
     --bgFooter: transparent;
     --txtFooter: hsl(var(--colorGrey-L27));
     --linkFooter: var(--colorGrey-L27);
-    --hoverLinkFooter: hsl(var(--colorSecondary));
+    --hoverLinkFooter: hsl(var(--colorSecondary)); */
 
-    /* Service btn. only header */
-    --colorServicesBtn: hsl(var(--colorWhite));
-    --hoverTxtServicesBtn: hsl(var(--colorPrimary));    
-
-    /* User Menu */
-    --colorBgUserMenu: var(--bgCard);
-    --colorLinkUserMenuItem: var(--colorLink);
-    --hoverBgUserMenuItem: hsl(var(--colorBlue-L91));
-    --hoverTxtUserMenuItem: hsl(var(--colorText));
-    --colorDivideUserMenu: hsla(var(--colorPrimary), 0.2);
+ 
 
     /* Sidebar and MAin menu */
-    --bgSideBar: var(--bgCard);
+    --bgSideBar: hsl(var(--colorGrey-L95));
     // main menu 1 level
     --colorSideMenuItem: hsl(var(--colorText));
     --hoverColorSideMenuItem: hsl(var(--colorPrimary));
