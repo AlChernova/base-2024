@@ -9,7 +9,10 @@
 <script src="/scripts/autosuggest/autosuggest.1.9.0.min.js"></script>
 <!-- индивидуальные  -->
 {% if pluginJs %}
-    <script type="module" src="{{ pluginJs }}"></script>
+    <script src="{{ pluginJs }}"></script>
+{% endif %}
+{% if pluginJs2 %}
+    <script src="{{ pluginJs2 }}"></script>
 {% endif %}
 
 <!-- основные скрипты -->

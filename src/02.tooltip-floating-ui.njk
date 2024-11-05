@@ -1,0 +1,54 @@
+---
+layout: inner.njk
+title: Floating UI tooltips 
+permalink: tooltip-floating-ui.html
+pluginCss: /scripts/floating-ui/floating-ui-custom.css
+eleventyNavigation:
+  key: Floating UI - tooltips 
+  icon: docs-thin
+---
+
+<div class="innerPage__section">
+ <p><a href="https://floating-ui.com/">https://floating-ui.com/</a> - A JavaScript library to position floating elements and create interactions for them.</p>
+ <p>сплошные импорты модулей цепочкой из файла в файл, с классикой не поняла как работать, хотя там вроде есть подключение по cdn</p>
+ {# pluginJs2: https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.12
+ pluginJs: https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.8 #}
+</div>
+<div class="innerPage__section">
+  <span class="tooltip">
+    <button class="button btn-default tooltip__toggle" id="button" aria-describedby="tooltip">
+        My button
+      </button>
+      <div id="tooltip" role="tooltip" class="tooltip__content"><div class="tooltip__text">My tooltip</div></div>
+  </span>
+</div>
+{# ====================================== #}
+<div class="innerPage__section">
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
+</div>
+
+
+{# ====================================== #}
+<script type="module">
+  import {computePosition, flip, shift, offset} from 'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.12/+esm';
+
+const button = document.querySelector('#button');
+const tooltip = document.querySelector('#tooltip');
+ 
+computePosition(button, tooltip, {
+  placement: 'bottom',
+  middleware: [offset(8), flip(), shift({padding: 5})],
+}).then(({x, y}) => {
+  Object.assign(tooltip.style, {
+    left: `${x}px`,
+    top: `${y}px`,
+  });
+});
+</script>
