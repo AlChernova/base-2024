@@ -1,0 +1,111 @@
+---
+layout: inner.njk
+title: Audioplayer 
+permalink: audioplayer.html
+pluginCss: /scripts/components/audioplayer.css
+pluginJs: /scripts/components/audioplayer.js
+eleventyNavigation:
+  key: audioplayer 
+  icon: docs-thin
+---
+
+<div class="innerPage__section">
+   <p>1</p>
+   <div class="audio-player" data-audio="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/FormulaFantasy.mp3">
+      <div class="timeline">
+         <div class="progress"></div>
+      </div>
+      <div class="controls">
+         <div class="play-container">
+            <button class="toggle-play play" type="button">
+               <span class="visually-hidden">Включить аудио</span>
+            </button>
+         </div>
+         <div class="time">
+            <div class="current">0:00</div>
+            <div class="divider">/</div>
+            <div class="length"></div>
+         </div>
+         <div class="name">Аудирование</div>
+         <div class="volume-container">
+            <button class="volume-button" type="button">
+               <span class="visually-hidden">Управление звуком</span>
+               <span class="icok">
+                  <svg alt="">
+                     <use xlink:href="/images/sprite.svg#svg-docs-thin"></use>
+                  </svg>
+               </span>
+            </button>
+            <div class="volume-slider">
+               <div class="volume-percentage"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <p>2 - no control</p>
+   <div class="audio-player" id="ap2" data-audio="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/Guilt.mp3" data-nocontrol="nocontrol">
+      <div class="timeline">
+         <div class="progress"></div>
+      </div>
+      <div class="controls">
+         <div class="play-container">
+            <button class="toggle-play play" type="button">
+               <span class="visually-hidden">Включить аудио</span>
+            </button>
+         </div>
+         <div class="time">
+            <div class="current">0:00</div>
+            <div class="divider">/</div>
+            <div class="length"></div>
+         </div>
+         <div class="name">Аудирование</div>
+         <div class="volume-container">
+            <button class="volume-button" type="button">
+               <span class="visually-hidden">Управление звуком</span>
+               <span class="icok">
+                  <svg alt="">
+                     <use xlink:href="/images/sprite.svg#svg-docs-thin"></use>
+                  </svg>
+               </span>
+            </button>
+            <div class="volume-slider">
+               <div class="volume-percentage"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <p>23</p>
+   <div class="audio-player" id="ap3" data-audio="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3">
+      <div class="timeline">
+         <div class="progress"></div>
+      </div>
+      <div class="controls">
+         <div class="play-container">
+            <button class="toggle-play play" type="button">
+               <span class="visually-hidden">Включить аудио</span>
+            </button>
+         </div>
+         <div class="time">
+            <div class="current">0:00</div>
+            <div class="divider">/</div>
+            <div class="length"></div>
+         </div>
+         <div class="name">Аудирование</div>
+         <div class="volume-container">
+            <button class="volume-button" type="button">
+               <span class="visually-hidden">Управление звуком</span>
+               <span class="icok">
+                  <svg alt="">
+                     <use xlink:href="/images/sprite.svg#svg-docs-thin"></use>
+                  </svg>
+               </span>
+            </button>
+            <div class="volume-slider">
+               <div class="volume-percentage"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script></script>

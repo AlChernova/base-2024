@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ЭУ: Подраздел -</title>
+<title>ЭУ: Audioplayer -</title>
 <link rel="preload" href="/fonts/Roboto-Regular.woff2" crossorigin as="font" type="font/woff2">
 <link rel="preload" href="/fonts/Roboto-Light.woff2" crossorigin as="font" type="font/woff2">
 <link rel="preload" href="/fonts/Roboto-Medium.woff2" crossorigin as="font" type="font/woff2">
@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="/scripts/hotel-datepicker/hotel-datepicker.css">
 <link rel="stylesheet" href="/scripts/autosuggest/autosuggest.min.css">
 <!-- индивидуальные  -->
+<link rel="stylesheet" href="/scripts/components/audioplayer.css">
 <!-- main styles  -->
 <link rel="stylesheet" href="styles/main.css">
 <link rel="stylesheet" media="(min-width: 768px)" href="styles/tablet.css">
@@ -32,7 +33,7 @@
 <div class="header__title titleServise">
 <a class="titleServise__link" href="/">База</a>
 <span class="titleServise__divider" role="presentation"></span>
-<strong class="titleServise__name">Подраздел</strong>
+<strong class="titleServise__name">Audioplayer</strong>
 </div>
 <div class="header__btn">
 <!-- для мобильного меню -->
@@ -52,8 +53,8 @@
 <a class="menuSide__link" href="/shoelaces.html">
 <span class="icok menuSide__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-docs-thin"></use></svg></span>shoelaces фреймворк на веб-компонентах</a>
 </li>
-<li class="menuSide__item">
-<a class="menuSide__link" href="/audioplayer.html">
+<li class="menuSide__item selected">
+<a class="menuSide__link selected" href="/audioplayer.html">
 <span class="icok menuSide__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-docs-thin"></use></svg></span>audioplayer</a>
 </li>
 <li class="menuSide__item">
@@ -64,13 +65,13 @@
 <a class="menuSide__link" href="/">
 <span class="icok menuSide__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-docs-thin"></use></svg></span>Readme</a>
 </li>
-<li class="menuSide__item selected">
-<button class="menuSide__link selected" aria-expanded="false" aria-controls="id_section_menu" type="button">
+<li class="menuSide__item">
+<button class="menuSide__link" aria-expanded="false" aria-controls="id_section_menu" type="button">
 <span class="icok menuSide__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-close"></use></svg></span>Пример раздела<span class="icok menuSide__arrow"><svg alt=""><use xlink:href="/images/sprite.svg#svg-shevron-bottom-sm"></use></svg></span></button>
 <div class="menuSide__subcontainer">
 <ul class="menuSide__submenu subMenuSide" id="id_section_menu">
-<li class="subMenuSide__item selected">
-<a class="subMenuSide__link selected" href="/subsection.html">
+<li class="subMenuSide__item">
+<a class="subMenuSide__link" href="/subsection.html">
 Подраздел</a>
 </li>
 </ul>
@@ -83,9 +84,105 @@
 <div class="innerPage">
 <div class="innerPage__container">
 <main class="innerPage__content">
-<h1>Подраздел</h1>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quisquam aperiam iusto. Aspernatur quibusdam corrupti obcaecati enim, ex ut laudantium, in sint aliquid repellendus quidem nihil veritatis fugit error. Rerum!</p>
-</main>
+<div class="innerPage__section">
+<p>1</p>
+<div class="audio-player" data-audio="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/FormulaFantasy.mp3">
+<div class="timeline">
+<div class="progress"></div>
+</div>
+<div class="controls">
+<div class="play-container">
+<button class="toggle-play play" type="button">
+<span class="visually-hidden">Включить аудио</span>
+</button>
+</div>
+<div class="time">
+<div class="current">0:00</div>
+<div class="divider">/</div>
+<div class="length"></div>
+</div>
+<div class="name">Аудирование</div>
+<div class="volume-container">
+<button class="volume-button" type="button">
+<span class="visually-hidden">Управление звуком</span>
+<span class="icok">
+<svg alt="">
+<use xlink:href="/images/sprite.svg#svg-docs-thin"></use>
+</svg>
+</span>
+</button>
+<div class="volume-slider">
+<div class="volume-percentage"></div>
+</div>
+</div>
+</div>
+</div>
+<p>2 - no control</p>
+<div class="audio-player" id="ap2" data-audio="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/Guilt.mp3" data-nocontrol="nocontrol">
+<div class="timeline">
+<div class="progress"></div>
+</div>
+<div class="controls">
+<div class="play-container">
+<button class="toggle-play play" type="button">
+<span class="visually-hidden">Включить аудио</span>
+</button>
+</div>
+<div class="time">
+<div class="current">0:00</div>
+<div class="divider">/</div>
+<div class="length"></div>
+</div>
+<div class="name">Аудирование</div>
+<div class="volume-container">
+<button class="volume-button" type="button">
+<span class="visually-hidden">Управление звуком</span>
+<span class="icok">
+<svg alt="">
+<use xlink:href="/images/sprite.svg#svg-docs-thin"></use>
+</svg>
+</span>
+</button>
+<div class="volume-slider">
+<div class="volume-percentage"></div>
+</div>
+</div>
+</div>
+</div>
+<p>23</p>
+<div class="audio-player" id="ap3" data-audio="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3">
+<div class="timeline">
+<div class="progress"></div>
+</div>
+<div class="controls">
+<div class="play-container">
+<button class="toggle-play play" type="button">
+<span class="visually-hidden">Включить аудио</span>
+</button>
+</div>
+<div class="time">
+<div class="current">0:00</div>
+<div class="divider">/</div>
+<div class="length"></div>
+</div>
+<div class="name">Аудирование</div>
+<div class="volume-container">
+<button class="volume-button" type="button">
+<span class="visually-hidden">Управление звуком</span>
+<span class="icok">
+<svg alt="">
+<use xlink:href="/images/sprite.svg#svg-docs-thin"></use>
+</svg>
+</span>
+</button>
+<div class="volume-slider">
+<div class="volume-percentage"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script></script></main>
 </div>
 <footer class="footer innerPage__footer">
 <div class="footer__container">
@@ -101,6 +198,7 @@
 <script src="/scripts/hotel-datepicker/hotel-datepicker.min.js"></script>
 <script src="/scripts/autosuggest/autosuggest.1.9.0.min.js"></script>
 <!-- индивидуальные  -->
+<script src="/scripts/components/audioplayer.js"></script>
 <!-- основные скрипты -->
 <script src="/scripts/main.js"></script>
 </body>
