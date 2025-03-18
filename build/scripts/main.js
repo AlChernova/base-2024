@@ -1250,9 +1250,12 @@ if (listCloseBtnAlert.length != 0) {
     
     /* test инициализация аудиоплееров */
 const audios = document.querySelectorAll('[data-audio]');
-audios.forEach(item => {
-    new audioPlayer2(item, item.dataset.audio, item.dataset.nocontrol);
-});
+if (audios.length > 0) {
+    audios.forEach(item => {
+        new audioPlayer2(item, item.dataset.audio, item.dataset.nocontrol);
+    });
+}
+
 
     
 },

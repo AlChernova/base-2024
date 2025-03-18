@@ -1,0 +1,32 @@
+---
+layout: inner.njk
+title: Audio recorder 
+permalink: audiorecorder.html
+pluginCss: /scripts/components/audiorecorder.css
+pluginJs: /scripts/components/audiorecorder.js
+eleventyNavigation:
+  key: audiorecorder 
+  icon: microphone-stroke
+---
+
+<div class="innerPage__section">
+  <p>
+    <button class="button button--withicon" id="start" type="button">
+      <span>Запись</span>
+      <span class="icok">
+        <svg alt="">
+            <use xlink:href="/images/sprite.svg#svg-microphone-stroke"></use>
+        </svg>
+      </span>
+    </button>
+    <button class="button button--withicon" id="stop" type="button">
+      <span>стоп</span>
+    </button>
+  </p>
+   <audio id="audio" controls src="#">
+    {# Ваш браузер не поддерживает встроенное аудио. Попробуйте скачать его
+    <a href="hi-alice.mp3" download>по ссылке</a>. #}
+  </audio>
+</div>
+
+<script></script>

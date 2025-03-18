@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ЭУ: Подраздел -</title>
+<title>ЭУ: Audio recorder -</title>
 <link rel="preload" href="/fonts/Roboto-Regular.woff2" crossorigin as="font" type="font/woff2">
 <link rel="preload" href="/fonts/Roboto-Light.woff2" crossorigin as="font" type="font/woff2">
 <link rel="preload" href="/fonts/Roboto-Medium.woff2" crossorigin as="font" type="font/woff2">
@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="/scripts/hotel-datepicker/hotel-datepicker.css">
 <link rel="stylesheet" href="/scripts/autosuggest/autosuggest.min.css">
 <!-- индивидуальные  -->
+<link rel="stylesheet" href="/scripts/components/audiorecorder.css">
 <!-- main styles  -->
 <link rel="stylesheet" href="styles/main.css">
 <link rel="stylesheet" media="(min-width: 768px)" href="styles/tablet.css">
@@ -32,7 +33,7 @@
 <div class="header__title titleServise">
 <a class="titleServise__link" href="/">База</a>
 <span class="titleServise__divider" role="presentation"></span>
-<strong class="titleServise__name">Подраздел</strong>
+<strong class="titleServise__name">Audio recorder</strong>
 </div>
 <div class="header__btn">
 <!-- для мобильного меню -->
@@ -60,21 +61,21 @@
 <a class="menuSide__link" href="/tooltip-floating-ui.html">
 <span class="icok menuSide__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-docs-thin"></use></svg></span>Floating UI - tooltips</a>
 </li>
-<li class="menuSide__item">
-<a class="menuSide__link" href="/audiorecorder.html">
+<li class="menuSide__item selected">
+<a class="menuSide__link selected" href="/audiorecorder.html">
 <span class="icok menuSide__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-microphone-stroke"></use></svg></span>audiorecorder</a>
 </li>
 <li class="menuSide__item">
 <a class="menuSide__link" href="/">
 <span class="icok menuSide__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-docs-thin"></use></svg></span>Readme</a>
 </li>
-<li class="menuSide__item selected">
-<button class="menuSide__link selected" aria-expanded="false" aria-controls="id_section_menu" type="button">
+<li class="menuSide__item">
+<button class="menuSide__link" aria-expanded="false" aria-controls="id_section_menu" type="button">
 <span class="icok menuSide__icon"><svg alt=""><use xlink:href="/images/sprite.svg#svg-close"></use></svg></span>Пример раздела<span class="icok menuSide__arrow"><svg alt=""><use xlink:href="/images/sprite.svg#svg-shevron-bottom-sm"></use></svg></span></button>
 <div class="menuSide__subcontainer">
 <ul class="menuSide__submenu subMenuSide" id="id_section_menu">
-<li class="subMenuSide__item selected">
-<a class="subMenuSide__link selected" href="/subsection.html">
+<li class="subMenuSide__item">
+<a class="subMenuSide__link" href="/subsection.html">
 Подраздел</a>
 </li>
 </ul>
@@ -87,9 +88,24 @@
 <div class="innerPage">
 <div class="innerPage__container">
 <main class="innerPage__content">
-<h1>Подраздел</h1>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quisquam aperiam iusto. Aspernatur quibusdam corrupti obcaecati enim, ex ut laudantium, in sint aliquid repellendus quidem nihil veritatis fugit error. Rerum!</p>
-</main>
+<div class="innerPage__section">
+<p>
+<button class="button button--withicon" id="start" type="button">
+<span>Запись</span>
+<span class="icok">
+<svg alt="">
+<use xlink:href="/images/sprite.svg#svg-microphone-stroke"></use>
+</svg>
+</span>
+</button>
+<button class="button button--withicon" id="stop" type="button">
+<span>стоп</span>
+</button>
+</p>
+<audio id="audio" controls src="#">
+</audio>
+</div>
+<script></script></main>
 </div>
 <footer class="footer innerPage__footer">
 <div class="footer__container">
@@ -105,6 +121,7 @@
 <script src="/scripts/hotel-datepicker/hotel-datepicker.min.js"></script>
 <script src="/scripts/autosuggest/autosuggest.1.9.0.min.js"></script>
 <!-- индивидуальные  -->
+<script src="/scripts/components/audiorecorder.js"></script>
 <!-- основные скрипты -->
 <script src="/scripts/main.js"></script>
 </body>
