@@ -10,23 +10,31 @@ eleventyNavigation:
 ---
 
 <div class="innerPage__section">
-  <p>
-    <button class="button button--withicon" id="start" type="button">
-      <span>Запись</span>
-      <span class="icok">
-        <svg alt="">
-            <use xlink:href="/images/sprite.svg#svg-microphone-stroke"></use>
-        </svg>
-      </span>
-    </button>
-    <button class="button button--withicon" id="stop" type="button">
-      <span>стоп</span>
-    </button>
-  </p>
-   <audio id="audio" controls src="#">
-    {# Ваш браузер не поддерживает встроенное аудио. Попробуйте скачать его
-    <a href="hi-alice.mp3" download>по ссылке</a>. #}
-  </audio>
+  <div class="audiorecord">
+    <div class="audiorecord__control">
+      <button class="button button--withicon" id="start-1" type="button" data-record="start">
+        <span class="icok">
+          <svg alt="">
+              <use xlink:href="/images/sprite.svg#svg-microphone-stroke"></use>
+          </svg>
+        </span>
+        <span>Записать ответ</span>
+      </button>
+      <button class="button button--withicon" id="stop" type="button" disabled data-record="stop">
+        <span>Стоп</span>
+      </button>
+    </div>
+    <div class="audiorecord__result" data-record="result" hidden>
+      <p>Проверить запись<br>
+        <audio id="audio" controls src="#" data-record="result_listen">{# 
+          Ваш браузер не поддерживает встроенное аудио. Попробуйте скачать его
+          <a href="hi-alice.mp3" download>по ссылке</a>. #}
+        </audio>
+      </p>
+      <p><a href="#" id="downloadrecord" download data-record="result_donwload">Скачать запись</a></p>
+      <input type="hidden" name="p_audio_file_1" value="" data-record="post">
+    </div>
+  </div>
 </div>
 
 <script></script>
