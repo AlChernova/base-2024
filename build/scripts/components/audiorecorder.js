@@ -16,22 +16,22 @@ let chunks = [];
 let mediaRecorder = null;
 let audioBlob = null
 
-// startButton.onclick = startRecord;
-startButton.addEventListener('click', (e) => {
-   startRecord();
-});
-// stopButton.onclick = mediaRecorderStop;
-
-/* navigator.mediaDevices.getUserMedia(constraints)
+navigator.mediaDevices.getUserMedia(constraints)
   .then((_stream) => {
     stream = _stream;
   })
   // если возникла ошибка, значит, либо пользователь отказал в доступе,
   // либо запрашиваемое медиа-устройство не обнаружено
   .catch((err) => {
-    console.error(`Нет доступа или не найдено устройство: ${err}`);
-   //  alert(`Нет доступа или не найдено устройство: ${err}`);
-  }); */
+   //  console.error(`Нет доступа или не найдено устройство: ${err}`);
+    alert(`Нет доступа или не найдено устройство: ${err}`);
+  });
+
+// startButton.onclick = startRecord;
+startButton.addEventListener('click', (e) => {
+   startRecord();
+});
+// stopButton.onclick = mediaRecorderStop;
 
 async function startRecord() {
    // проверяем поддержку
@@ -43,7 +43,7 @@ async function startRecord() {
    if (!mediaRecorder) {
       startButton.setAttribute('disabled', '');
       stopButton.removeAttribute('disabled');
-      // сбрасываем результаты
+      // сбрасываем пердыдущие результаты
       if (result.getAttribute('hidden') != 'true') {
          resultListen.src = '';
          resultDownload.href = '';
@@ -106,7 +106,7 @@ async function startRecord() {
          //  record_img.src = ' img/microphone.png'
       }
       } /* else {
-      // если запись запущена, останавливаем ее
+      // если запись запущена, останавливаем ее при клике на ту же кнопку
       console.log("stop play");
             
       mediaRecorder.stop()
