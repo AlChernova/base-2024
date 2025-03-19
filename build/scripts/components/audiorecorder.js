@@ -3,15 +3,31 @@
 Aleksandra Chernova, 2025.03.19 */
 
 class audioRecorder {
-   constructor(recorder) {
+   constructor(recorder, options) {
       // consts controls
       this.recorder = recorder;
       this.startButton = this.recorder.querySelector('[data-record=start]');
       this.stopButton = this.recorder.querySelector('[data-record=stop]');
-      this.result = this.recorder.querySelector('[data-record=result]');
-      this.resultListen = this.recorder.querySelector('[data-record=result_listen]');
-      this.resultDownload = this.recorder.querySelector('[data-record=result_download]');
       this.inputPost = this.recorder.querySelector('[data-record=post]');
+
+      // Set default values
+      const opts = options || {};
+
+      this.showResult = opts.showResult || false;
+      this.url = opts.showResult ? "" : false;
+      this.showPlayer = opts.showPlayer || false;
+      this.showDownload = opts.showDownload || false;
+
+      /* if (this.showResult) {
+         this.result = this.recorder.querySelector('[data-record=result]');
+
+         if (this.showPlayer) {
+            this.resultListen = this.recorder.querySelector('[data-record=result_listen]');
+         }
+         if (this.showDownload) {
+            this.resultDownload = this.recorder.querySelector('[data-record=result_download]');
+         }
+      } */
 
       // consts datas
       this.constraints = { audio: true, video: false };
@@ -52,11 +68,11 @@ class audioRecorder {
       if (!this.mediaRecorder) {
          this.startButton.setAttribute('disabled', '');
          this.stopButton.removeAttribute('disabled');
-         // сбрасываем пердыдущие результаты
-         if (this.result.getAttribute('hidden') != 'true') {
+         // сбрасываем предыдущие результаты
+         if (this.showResult && this.result) {
+            this.inputPost.value = '';
             this.resultListen.src = '';
             this.resultDownload.href = '';
-            this.inputPost.value = '';
             this.result.setAttribute('hidden', '');
          }
 
@@ -86,10 +102,18 @@ class audioRecorder {
                // для вывода проверки записи создаем ссылку на файл
                // метод `createObjectURL()` может использоваться для создания временных ссылок на файлы
                // данный метод "берет" `Blob` и создает уникальный `URL` для него в формате `blob:<origin>/<uuid>`
-               const url = URL.createObjectURL(this.audioBlob)
-               this.resultListen.src = url;
-               this.resultDownload.href = url;
-               this.result.removeAttribute('hidden');
+               if (this.showResult) {
+                  this.url = URL.createObjectURL(this.audioBlob)
+                  // this.result.removeAttribute('hidden');
+
+                  this.createResult();
+                  /* if (this.showPlayer) {
+                     this.resultListen.src = this.url;
+                  }
+                  if (this.showDownload) {
+                     this.resultDownload.href = this.url;
+                  } */
+               }
 
                // для отправки на сервер конвертируем blob в  base64
                let reader = new FileReader();
@@ -115,6 +139,38 @@ class audioRecorder {
             //  record_img.src = ' img/microphone.png'
          }
       }
+   }
+
+   createResult() {
+      const domString = this.createResultDomString();
+
+      // Insert the result in the document
+      this.recorder.insertAdjacentHTML("beforeend", domString);
+
+      // Store our result blocks in a property
+      this.result = this.recorder.querySelector('[data-record=result]');
+
+      if (this.showPlayer) {
+         this.resultListen = this.recorder.querySelector('[data-record=result_listen]');
+      }
+      if (this.showDownload) {
+         this.resultDownload = this.recorder.querySelector('[data-record=result_download]');
+      }
+   }
+
+   createResultDomString() {
+      let html = '<div class="audiorecord__result" data-record="result">';
+      
+      if (this.showPlayer) {
+         html += `<div class="audiorecord__player">Проверить запись<br><audio controls src="${this.url}" data-record="result_listen">Ваш браузер не поддерживает встроенное аудио.</audio></div>`
+      }
+      if (this.showDownload) {
+         html += `<div class="audiorecord__download"><a href="${this.url}" download data-record="result_download">Скачать запись</a></div>`
+      }
+
+      html += "</div>";
+
+      return html;
    }
 }
 

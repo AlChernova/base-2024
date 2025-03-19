@@ -24,16 +24,16 @@ eleventyNavigation:
         <span>Стоп</span>
       </button>
     </div>
-    <div class="audiorecord__result" data-record="result" hidden>
+    <input type="hidden" name="p_audio_file_1" value="" data-record="post">
+    {# <div class="audiorecord__result" data-record="result" hidden>
       <p>Проверить запись<br>
         <audio id="audio" controls src="#" data-record="result_listen">{# 
           Ваш браузер не поддерживает встроенное аудио. Попробуйте скачать его
-          <a href="hi-alice.mp3" download>по ссылке</a>. #}
+          <a href="hi-alice.mp3" download>по ссылке</a>. }
         </audio>
       </p>
       <p><a href="#" download data-record="result_download">Скачать запись</a></p>
-      <input type="hidden" name="p_audio_file_1" value="" data-record="post">
-    </div>
+    </div> #}
   </div>
 </div>
 {# 2 #}
@@ -52,16 +52,13 @@ eleventyNavigation:
         <span>Стоп 2</span>
       </button>
     </div>
-    <div class="audiorecord__result" data-record="result" hidden>
+      <input type="hidden" name="p_audio_file_2" value="" data-record="post">
+    {# <div class="audiorecord__result" data-record="result" hidden>
       <p>Проверить запись 2<br>
-        <audio id="audio" controls src="#" data-record="result_listen">{# 
-          Ваш браузер не поддерживает встроенное аудио. Попробуйте скачать его
-          <a href="hi-alice.mp3" download>по ссылке</a>. #}
-        </audio>
+        <audio id="audio" controls src="#" data-record="result_listen"></audio>
       </p>
       <p><a href="#" download data-record="result_download">Скачать запись</a></p>
-      <input type="hidden" name="p_audio_file_2" value="" data-record="post">
-    </div>
+    </div> #}
   </div>
 </div>
 

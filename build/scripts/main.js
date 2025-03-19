@@ -1259,7 +1259,11 @@ if (audios.length > 0) {
 const recorders = document.querySelectorAll('[data-audiorecord]');
 if (recorders.length > 0) {
     recorders.forEach(item => {
-        new audioRecorder(item);
+        new audioRecorder(item, {
+            showResult: true,
+            showPlayer: true,
+            showDownload: true
+        });
     });
 }
     
