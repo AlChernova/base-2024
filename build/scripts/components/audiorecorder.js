@@ -9,6 +9,7 @@ class audioRecorder {
       this.startButton = this.recorder.querySelector('[data-record=start]');
       this.stopButton = this.recorder.querySelector('[data-record=stop]');
       this.inputPost = this.recorder.querySelector('[data-record=post]');
+      this.inputFile = this.recorder.querySelector('[data-record=file]');
 
       // Set default values
       const opts = options || {};
@@ -115,7 +116,18 @@ class audioRecorder {
                   } */
                }
 
+               // test blob в file и в инпут type=file
+               // Для этого создаем объект File из blob и новый объект DataTransfer:
+               let file = new File([this.audioBlob], 'test.wav', { type: 'audio/wav' });
+               let container = new DataTransfer();
+               // Затем вы добавляете файл в контейнер, тем самым заполняя его свойство «files», которое можно назначить свойству «files» входного файла:
+               container.items.add(file);
+
+               this.inputFile.files = container.files;
+               console.log(this.inputFile.files);
+
                // для отправки на сервер конвертируем blob в  base64
+               // проблема в длине\размере - сервер не принимает такой большой
                let reader = new FileReader();
                reader.readAsDataURL(this.audioBlob); // конвертирует Blob в base64 и вызывает onload
                reader.onload = (e) => {
