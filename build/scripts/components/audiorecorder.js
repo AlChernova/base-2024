@@ -1,14 +1,37 @@
 "use strict";
+/* Audio player
+Aleksandra Chernova, 2025.03.19 */
 const recorder = document.querySelector('.audiorecord');
+
+class audioRecorder {
+   constructor(recorder) {
+      // consts controls
+      this.recorder = recorder;
+      this.startButton = this.recorder.querySelector('[data-record=start]');
+      this.stopButton = this.recorder.querySelector('[data-record=stop]');
+      this.result = this.recorder.querySelector('[data-record=result]');
+      this.resultListen = this.recorder.querySelector('[data-record=result_listen]');
+      this.resultDownload = this.recorder.querySelector('[data-record=result_donwload]');
+      this.inputPost = this.recorder.querySelector('[data-record=post]');
+
+      // consts datas
+      const constraints = { audio: true, video: false };
+      this.stream = null;
+      this.chunks = [];
+      this.mediaRecorder = null;
+      this.audioBlob = null
+
+      // listeners
+      this.startButton.addEventListener('click', this.startRecord.bind(this), false);
+   }
+}
+
 const startButton = recorder.querySelector('[data-record=start]'),
       stopButton = recorder.querySelector('[data-record=stop]'),
       result = recorder.querySelector('[data-record=result]'),
       resultListen = recorder.querySelector('[data-record=result_listen]'),
       resultDownload = recorder.querySelector('[data-record=result_donwload]'),
       inputPost = recorder.querySelector('[data-record=post]');
-   /* const stopButton = document.querySelector('#stop');
-   const audio = document.querySelector('#audio');
-   const downloadLink = document.querySelector('#downloadrecord'); */
 
 const constraints = { audio: true, video: false };
 let stream = null;
