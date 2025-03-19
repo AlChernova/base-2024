@@ -6,3 +6,9 @@ if (audios.length > 0) {
     });
 }
 
+const recorders = document.querySelectorAll('[data-audiorecord]');
+if (recorders.length > 0) {
+    recorders.forEach(item => {
+        new audioRecorder(item);
+    });
+}

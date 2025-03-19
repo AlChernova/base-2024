@@ -1,7 +1,6 @@
 "use strict";
 /* Audio player
 Aleksandra Chernova, 2025.03.19 */
-const recorder = document.querySelector('.audiorecord');
 
 class audioRecorder {
    constructor(recorder) {
@@ -11,22 +10,117 @@ class audioRecorder {
       this.stopButton = this.recorder.querySelector('[data-record=stop]');
       this.result = this.recorder.querySelector('[data-record=result]');
       this.resultListen = this.recorder.querySelector('[data-record=result_listen]');
-      this.resultDownload = this.recorder.querySelector('[data-record=result_donwload]');
+      this.resultDownload = this.recorder.querySelector('[data-record=result_download]');
       this.inputPost = this.recorder.querySelector('[data-record=post]');
 
       // consts datas
-      const constraints = { audio: true, video: false };
+      this.constraints = { audio: true, video: false };
       this.stream = null;
       this.chunks = [];
       this.mediaRecorder = null;
       this.audioBlob = null
 
+      navigator.mediaDevices.getUserMedia(this.constraints)
+         .then((_stream) => {
+            this.stream = _stream;
+         })
+         // если возникла ошибка, значит, либо пользователь отказал в доступе,
+         // либо запрашиваемое медиа-устройство не обнаружено
+         .catch((err) => {
+            //  console.error(`Нет доступа или не найдено устройство: ${err}`);
+            alert(`Нет доступа или не найдено устройство: ${err}`);
+         });
+
       // listeners
       this.startButton.addEventListener('click', this.startRecord.bind(this), false);
    }
+
+   async startRecord() {
+      /* this.startButton.disabled = true;
+      this.stopButton.disabled = false;
+      this.result.disabled = true;
+      this.mediaRecorder = new MediaRecorder(this.stream);
+      this.mediaRecorder.addEventListener('dataavailable', this.handleDataAvailable.bind(this));
+      this.mediaRecorder.addEventListener('stop', this.handleStop.bind(this));
+      this.mediaRecorder.start(); */
+
+      // проверяем поддержку
+      if (!navigator.mediaDevices && !navigator.mediaDevices.getUserMedia) {
+         return console.warn('Not supported')
+      }
+      
+      if (!this.mediaRecorder) {
+         this.startButton.setAttribute('disabled', '');
+         this.stopButton.removeAttribute('disabled');
+         // сбрасываем пердыдущие результаты
+         if (this.result.getAttribute('hidden') != 'true') {
+            this.resultListen.src = '';
+            this.resultDownload.href = '';
+            this.inputPost.value = '';
+            this.result.setAttribute('hidden', '');
+         }
+
+         try {
+            // получаем поток аудио-данных
+            this.stream = await navigator.mediaDevices.getUserMedia({
+               audio: true
+            })
+            // создаем экземпляр `MediaRecorder`, передавая ему поток в качестве аргумента
+            this.mediaRecorder = new MediaRecorder(this.stream)
+            // запускаем запись
+            this.mediaRecorder.start()
+            // по окончанию записи и наличии данных добавляем эти данные в соответствующий массив
+            this.mediaRecorder.addEventListener('dataavailable', (e) => {
+               this.chunks.push(e.data)
+            });
+            console.log("start record");
+
+            // обработчик окончания записи 
+            this.mediaRecorder.addEventListener("stop", (e) => {
+               // создаем объект `Blob` с помощью соответствующего конструктора,
+               // передавая ему `blobParts` в виде массива и настройки с типом создаваемого объекта
+               // о том, что такое `Blob` и для чего он может использоваться
+               // очень хорошо написано здесь: https://learn.javascript.ru/blob
+               this.audioBlob = new Blob(this.chunks, { type: 'audio/wav' })
+
+               // для вывода проверки записи создаем ссылку на файл
+               // метод `createObjectURL()` может использоваться для создания временных ссылок на файлы
+               // данный метод "берет" `Blob` и создает уникальный `URL` для него в формате `blob:<origin>/<uuid>`
+               const url = URL.createObjectURL(this.audioBlob)
+               this.resultListen.src = url;
+               this.resultDownload.href = url;
+               this.result.removeAttribute('hidden');
+
+               // для отправки на сервер конвертируем blob в  base64
+               let reader = new FileReader();
+               reader.readAsDataURL(this.audioBlob); // конвертирует Blob в base64 и вызывает onload
+               reader.onload = (e) => {
+                  this.inputPost.value = reader.result;
+                  // console.log(reader.result);
+               }
+
+               // выполняем очистку
+               this.mediaRecorder = null
+               this.chunks = []
+            });
+
+            this.stopButton.addEventListener('click', (e) => {
+               this.mediaRecorder.stop();
+               this.startButton.removeAttribute('disabled');
+               this.stopButton.setAttribute('disabled', '');
+            });
+   
+         } catch (e) {
+            console.error(e)
+            //  record_img.src = ' img/microphone.png'
+         }
+      }
+   }
 }
 
-const startButton = recorder.querySelector('[data-record=start]'),
+// new audioRecorder(recorder);
+
+/* const startButton = recorder.querySelector('[data-record=start]'),
       stopButton = recorder.querySelector('[data-record=stop]'),
       result = recorder.querySelector('[data-record=result]'),
       resultListen = recorder.querySelector('[data-record=result_listen]'),
@@ -53,10 +147,10 @@ navigator.mediaDevices.getUserMedia(constraints)
 // startButton.onclick = startRecord;
 startButton.addEventListener('click', (e) => {
    startRecord();
-});
+}); */
 // stopButton.onclick = mediaRecorderStop;
 
-async function startRecord() {
+/* async function startRecord() {
    // проверяем поддержку
    if (!navigator.mediaDevices && !navigator.mediaDevices.getUserMedia) {
      return console.warn('Not supported')
@@ -128,13 +222,13 @@ async function startRecord() {
          console.error(e)
          //  record_img.src = ' img/microphone.png'
       }
-      } /* else {
+      }  *//* else {
       // если запись запущена, останавливаем ее при клике на ту же кнопку
       console.log("stop play");
             
       mediaRecorder.stop()
       } */
-}
+/* } */
 
 
 

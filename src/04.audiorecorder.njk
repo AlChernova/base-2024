@@ -10,9 +10,9 @@ eleventyNavigation:
 ---
 
 <div class="innerPage__section">
-  <div class="audiorecord">
+  <div class="audiorecord" data-audiorecord>
     <div class="audiorecord__control">
-      <button class="button button--withicon" id="start-1" type="button" data-record="start">
+      <button class="button button--withicon" type="button" data-record="start">
         <span class="icok">
           <svg alt="">
               <use xlink:href="/images/sprite.svg#svg-microphone-stroke"></use>
@@ -20,7 +20,7 @@ eleventyNavigation:
         </span>
         <span>Записать ответ</span>
       </button>
-      <button class="button button--withicon" id="stop" type="button" disabled data-record="stop">
+      <button class="button button--withicon" type="button" disabled data-record="stop">
         <span>Стоп</span>
       </button>
     </div>
@@ -31,8 +31,36 @@ eleventyNavigation:
           <a href="hi-alice.mp3" download>по ссылке</a>. #}
         </audio>
       </p>
-      <p><a href="#" id="downloadrecord" download data-record="result_donwload">Скачать запись</a></p>
+      <p><a href="#" download data-record="result_download">Скачать запись</a></p>
       <input type="hidden" name="p_audio_file_1" value="" data-record="post">
+    </div>
+  </div>
+</div>
+{# 2 #}
+<div class="innerPage__section">
+  <div class="audiorecord" data-audiorecord>
+    <div class="audiorecord__control">
+      <button class="button button--withicon" type="button" data-record="start">
+        <span class="icok">
+          <svg alt="">
+              <use xlink:href="/images/sprite.svg#svg-microphone-stroke"></use>
+          </svg>
+        </span>
+        <span>Записать ответ 2</span>
+      </button>
+      <button class="button button--withicon" type="button" disabled data-record="stop">
+        <span>Стоп 2</span>
+      </button>
+    </div>
+    <div class="audiorecord__result" data-record="result" hidden>
+      <p>Проверить запись 2<br>
+        <audio id="audio" controls src="#" data-record="result_listen">{# 
+          Ваш браузер не поддерживает встроенное аудио. Попробуйте скачать его
+          <a href="hi-alice.mp3" download>по ссылке</a>. #}
+        </audio>
+      </p>
+      <p><a href="#" download data-record="result_download">Скачать запись</a></p>
+      <input type="hidden" name="p_audio_file_2" value="" data-record="post">
     </div>
   </div>
 </div>
