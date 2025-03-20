@@ -63,15 +63,18 @@ class audioRecorder {
       
       if (!this.mediaRecorder) {
          this.startButton.setAttribute('disabled', '');
-         this.stopButton.removeAttribute('disabled');
+         this.startButton.setAttribute('hidden', '');
+         this.progress.removeAttribute('hidden');
+         // this.stopButton.removeAttribute('disabled');
 
 
          // сбрасываем предыдущие результаты
          if (this.showResult && this.result) {
             // this.inputPost.value = '';
-            this.resultListen.src = '';
+            this.inputFile.value = '';
+            /* this.resultListen.src = '';
             this.resultDownload.href = '';
-            this.result.setAttribute('hidden', '');
+            this.result.setAttribute('hidden', ''); */
          }
 
          try {
@@ -137,18 +140,6 @@ class audioRecorder {
                this.chunks = []
             });
 
-            this.stopButton.addEventListener('click', (e) => {
-               this.mediaRecorder.stop();
-               this.startButton.removeAttribute('disabled');
-               this.stopButton.setAttribute('disabled', '');
-
-               clearInterval(this.timerStart);
-
-               if (this.limit) {
-                  clearInterval(this.barTimer);
-               }
-            });
-
             // запускаем таймер
             this.progress.removeAttribute('hidden');
             let seconds = 0,
@@ -185,7 +176,7 @@ class audioRecorder {
             if (this.limit) {
                console.log(this.limit);
 
-               // запускаем таймер для бара
+               // запускаем таймер для бара  с меньшим интервалом для плавности
                let seconds = 0;
                this.barTimer = setInterval(() => {
                   seconds++;
@@ -204,6 +195,19 @@ class audioRecorder {
                }, this.limit);
             }
 
+            // стоп кнопка
+            this.stopButton.addEventListener('click', (e) => {
+               this.mediaRecorder.stop();
+               // this.startButton.removeAttribute('disabled');
+               // this.stopButton.setAttribute('disabled', '');
+               this.progress.setAttribute('hidden', '');
+
+               clearInterval(this.timerStart);
+
+               if (this.limit) {
+                  clearInterval(this.barTimer);
+               }
+            });
 
 
          } catch (e) {
@@ -222,6 +226,11 @@ class audioRecorder {
 
       // Store our result blocks in a property
       this.result = this.recorder.querySelector('[data-record=result]');
+      this.reset = this.recorder.querySelector('[data-record=reset]');
+
+      this.reset.addEventListener('click', (e) => {
+         this.resetResult(e);
+      });
 
       if (this.showPlayer) {
          this.resultListen = this.recorder.querySelector('[data-record=result_listen]');
@@ -232,10 +241,12 @@ class audioRecorder {
    }
 
    createResultDomString() {
-      let html = '<div class="audiorecord__result" data-record="result">';
+      let html = '<div class="audiorecord__result" data-record="result"><div class="audiorecord__resulttitle">Ответ записан';
+
+      html+='<button class="audiorecord__reset button" data-record="reset">Очистить</button></div>';
       
       if (this.showPlayer) {
-         html += `<div class="audiorecord__player">Проверить запись<br><audio controls src="${this.url}" data-record="result_listen">Ваш браузер не поддерживает встроенное аудио.</audio></div>`
+         html += `<div class="audiorecord__player"><audio controls src="${this.url}" data-record="result_listen">Ваш браузер не поддерживает встроенное аудио.</audio></div>`;
       }
       if (this.showDownload) {
          html += `<div class="audiorecord__download"><a href="${this.url}" download data-record="result_download">Скачать запись</a></div>`
@@ -244,6 +255,16 @@ class audioRecorder {
       html += "</div>";
 
       return html;
+   }
+
+   resetResult(e) {
+      this.result.remove();
+      this.result = null;
+      this.resultListen = null;
+      this.resultDownload = null;
+
+      this.startButton.removeAttribute('disabled');
+      this.startButton.removeAttribute('hidden');
    }
 }
 
