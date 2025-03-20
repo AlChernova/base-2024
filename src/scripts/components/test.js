@@ -12,8 +12,10 @@ if (recorders.length > 0) {
         new audioRecorder(item, {
             showResult: true,
             showPlayer: true, // default player generated script
+            showCustomPlayer: true, // 
             showDownload: true,
             limit: 10, // seconds
+            linkIcons: "/images/sprite.svg"
         });
     });
 }

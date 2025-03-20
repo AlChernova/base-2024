@@ -216,13 +216,20 @@ class audioRecorder {
       this.result = this.recorder.querySelector('[data-record=result]');
       this.reset = this.recorder.querySelector('[data-record=reset]');
 
+      // listener for reset button
       this.reset.addEventListener('click', (e) => {
          this.resetResult(e);
       });
 
-      if (this.showPlayer) {
+      /* if (this.showPlayer) {
+         // похоже нигде не используются
          this.resultListen = this.recorder.querySelector('[data-record=result_listen]');
-      }
+      } */
+
+      /* if (this.showCustomPlayer) {
+         this.resultCustomPlayer = this.recorder.querySelector('[data-record=result_customplayer]');
+      } */
+      
       if (this.showDownload) {
          this.resultDownload = this.recorder.querySelector('[data-record=result_download]');
       }
@@ -236,6 +243,11 @@ class audioRecorder {
       if (this.showPlayer) {
          html += `<div class="audiorecord__player"><audio controls src="${this.url}" data-record="result_listen">Ваш браузер не поддерживает встроенное аудио.</audio></div>`;
       }
+
+      if (this.showCustomPlayer) {
+         html += this.createCustomPlayerDom();
+      }
+
       if (this.showDownload) {
          html += `<div class="audiorecord__download"><a href="${this.url}" download data-record="result_download">Скачать запись</a></div>`
       }
@@ -245,10 +257,50 @@ class audioRecorder {
       return html;
    }
 
-   resetResult(e) {
+   createCustomPlayerDom() {
+      let timeline = `<div class="timeline">
+         <div class="progress"></div>
+      </div>`;
+      let play = `<div class="play-container">
+            <button class="toggle-play play" type="button">
+               <span class="visually-hidden">Включить аудио</span>
+            </button>
+         </div>`;
+      let time = `<div class="time">
+            <div class="current">0:00</div>
+            <div class="divider">/</div>
+            <div class="length"></div>
+         </div>`;
+      let name = `<div class="name">Запись ответа</div>`;
+
+      let volume = `<div class="volume-container">
+            <button class="volume-button" type="button">
+               <span class="visually-hidden">Управление звуком</span>
+               <span class="icok">
+                  <svg alt="">
+                     <use xlink:href="${this.linkIcons}#svg-volume-fill"></use>
+                  </svg>
+               </span>
+            </button>
+            <div class="volume-slider">
+               <div class="volume-percentage"></div>
+            </div>
+         </div>`;
+      
+      let controls = `<div class="controls">${play}${time}${name}${volume}</div>`;
+
+      let html = `<div class="audio-player" data-audio=${this.url}>
+         ${timeline}${controls}
+      </div>`;
+
+
+      return html;
+   }
+
+   resetResult() {
       this.result.remove();
       this.result = null;
-      this.resultListen = null;
+      // this.resultListen = null;
       this.resultDownload = null;
       if (this.limit) {
          this.bar.style.width = '0%';
