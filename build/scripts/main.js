@@ -1263,7 +1263,7 @@ if (recorders.length > 0) {
             showResult: true,
             showPlayer: true, // default player generated script
             showDownload: true,
-            limit: 180, // seconds
+            limit: 10, // seconds
         });
     });
 }

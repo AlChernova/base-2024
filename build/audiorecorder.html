@@ -99,11 +99,14 @@
 </span>
 <span>Записать ответ (3 минуты)</span>
 </button>
-<div class="audiorecord__progress audiorecord__progress--limit">
+<div class="audiorecord__progress audiorecord__progress--bar" data-record="progress">
 <div class="audiorecord__timer" data-record="timer"><span class="audiorecord__timermin" data-record="minutes">00</span>:<span class="audiorecord__timersec" data-record="seconds">00</span></div>
 <button class="button button--withicon" type="button" disabled data-record="stop">
 <span>Стоп</span>
 </button>
+<div class="audiorecord__bar">
+<div class="audiorecord__barmarker" data-record="bar"></div>
+</div>
 </div>
 </div>
 <!-- приемник записи для отправки -->

@@ -8,8 +8,9 @@ class audioRecorder {
       this.recorder = recorder;
       this.startButton = this.recorder.querySelector('[data-record=start]');
       this.stopButton = this.recorder.querySelector('[data-record=stop]');
-      this.inputPost = this.recorder.querySelector('[data-record=post]');
+      this.progress = this.recorder.querySelector('[data-record=progress]');
       this.inputFile = this.recorder.querySelector('[data-record=file]');
+      // this.inputPost = this.recorder.querySelector('[data-record=post]');
 
       // Set default values
       const opts = options || {};
@@ -21,11 +22,13 @@ class audioRecorder {
       this.showDownload = opts.showDownload || false;
       this.limit = opts.limit * 1000 || false;
 
+      this.timer = this.recorder.querySelector('[data-record=timer]');
+      this.minutes = this.recorder.querySelector('[data-record=minutes]');
+      this.seconds = this.recorder.querySelector('[data-record=seconds]');
+      this.timerStart;
       if (this.limit) {
-         this.timer = this.recorder.querySelector('[data-record=timer]');
-         this.minutes = this.recorder.querySelector('[data-record=minutes]');
-         this.seconds = this.recorder.querySelector('[data-record=seconds]');
-         this.timerStart;
+         this.bar = this.recorder.querySelector('[data-record=bar]');
+         this.barTimer;
       }
 
       // consts datas
@@ -61,6 +64,8 @@ class audioRecorder {
       if (!this.mediaRecorder) {
          this.startButton.setAttribute('disabled', '');
          this.stopButton.removeAttribute('disabled');
+
+
          // сбрасываем предыдущие результаты
          if (this.showResult && this.result) {
             // this.inputPost.value = '';
@@ -137,42 +142,62 @@ class audioRecorder {
                this.startButton.removeAttribute('disabled');
                this.stopButton.setAttribute('disabled', '');
 
+               clearInterval(this.timerStart);
+
                if (this.limit) {
-                  clearInterval(this.timerStart);
+                  clearInterval(this.barTimer);
                }
             });
 
+            // запускаем таймер
+            this.progress.removeAttribute('hidden');
+            let seconds = 0,
+                minutes = 0;
+            this.timerStart = setInterval(() => {
+               seconds++;
+
+               if (seconds < 10) {
+                  this.seconds.textContent = '0' + seconds;
+               } else {
+                  this.seconds.textContent = seconds;
+               }
+
+               if (seconds == 60) {
+                  seconds = 0;
+                  minutes++;
+
+                  if (minutes < 10) {
+                     this.minutes.textContent = '0' + minutes;
+                  } else {
+                     this.minutes.textContent = minutes;
+                  }
+               }
+
+               // вывод бара, если есть лимит
+               if (this.limit) {
+                  let procent = ((seconds + (minutes * 60)) / (this.limit / 1000)) * 100;
+                  this.bar.style.width = `${procent}%`;
+               }
+
+            }, 1000);
+
+            // ограничение по времени записи
             if (this.limit) {
                console.log(this.limit);
-               
-               this.timer.removeAttribute('hidden');
 
-               let seconds = 0,
-                   minutes = 0;
-               this.timerStart = setInterval(() => {
+               // запускаем таймер для бара
+               let seconds = 0;
+               this.barTimer = setInterval(() => {
                   seconds++;
 
-                  if (seconds < 10) {
-                     this.seconds.textContent = '0' + seconds;
-                  } else {
-                     this.seconds.textContent = seconds;
-                  }
+                  let procent = (seconds / (this.limit / 10)) * 100;
+                  this.bar.style.width = `${procent}%`;
 
-                  if (seconds == 60) {
-                     seconds = 0;
-                     minutes++;
-
-                     if (minutes < 10) {
-                        this.minutes.textContent = '0' + minutes;
-                     } else {
-                        this.minutes.textContent = minutes;
-                     }
-                  }
-
-               }, 1000);
+               }, 10);
 
                setTimeout(() => {
                   clearInterval(this.timerStart);
+                  clearInterval(this.barTimer);
                   this.mediaRecorder.stop();
                   this.startButton.removeAttribute('disabled');
                   this.stopButton.setAttribute('disabled', '');

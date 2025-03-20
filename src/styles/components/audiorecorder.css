@@ -1,5 +1,8 @@
 .audiorecord {
     max-width: 360px;
+    --heightBar: 4px;
+    --bgBar: hsla(var(--colorText), 0.3);
+    --bgBarActive: hsla(var(--colorPrimary), 1);
     
     &__start {
         width: 100%;
@@ -20,13 +23,32 @@
         grid-template-columns: repeat(auto, 1fr);
         grid-auto-flow: column;
         gap: 1em;
-        /* align-items: center; */
+        
+        &--bar {
+            grid-template-columns: auto auto;
+            grid-auto-flow: inherit;
+            justify-content: space-between;
+        }
     }
 
     &__timer {
         display: flex; align-items: center;
         justify-content: center;
         gap: 0.3ex;
+        padding: 0 1em;
         border: 1px solid hsla(0, 0%, 0%, 0.3);
+    }
+    &__bar {
+        grid-column: 1 / -1;
+        align-self: center;
+        position: relative;
+        height: 4px;
+        background: var(--bgBar);
+    }
+    &__barmarker {
+        width: 0;
+        height: 100%;
+        background: var(--bgBarActive);
+        transition: width 0.2s ease-in-out;
     }
 }
