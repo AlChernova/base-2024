@@ -66,6 +66,8 @@ module.exports = function(config){
 		'./src/styles/main.css',
 		'./src/styles/tablet.css',
 		'./src/styles/desctop.css',
+		'./src/styles/components/audiorecorder.css',
+		'./src/styles/components/audioplayer.css',
 	];
   config.addExtension('css', {
     outputFileExtension: 'css',
