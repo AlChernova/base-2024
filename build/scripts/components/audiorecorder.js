@@ -13,22 +13,20 @@ class audioRecorder {
 
       // Set default values
       const opts = options || {};
+      // let timer;
 
       this.showResult = opts.showResult || false;
       this.url = opts.showResult ? "" : false;
       this.showPlayer = opts.showPlayer || false;
       this.showDownload = opts.showDownload || false;
+      this.limit = opts.limit * 1000 || false;
 
-      /* if (this.showResult) {
-         this.result = this.recorder.querySelector('[data-record=result]');
-
-         if (this.showPlayer) {
-            this.resultListen = this.recorder.querySelector('[data-record=result_listen]');
-         }
-         if (this.showDownload) {
-            this.resultDownload = this.recorder.querySelector('[data-record=result_download]');
-         }
-      } */
+      if (this.limit) {
+         this.timer = this.recorder.querySelector('[data-record=timer]');
+         this.minutes = this.recorder.querySelector('[data-record=minutes]');
+         this.seconds = this.recorder.querySelector('[data-record=seconds]');
+         this.timerStart;
+      }
 
       // consts datas
       this.constraints = { audio: true, video: false };
@@ -37,6 +35,7 @@ class audioRecorder {
       this.mediaRecorder = null;
       this.audioBlob = null
 
+      // проверка доступности микрофона
       navigator.mediaDevices.getUserMedia(this.constraints)
          .then((_stream) => {
             this.stream = _stream;
@@ -52,15 +51,8 @@ class audioRecorder {
       this.startButton.addEventListener('click', this.startRecord.bind(this), false);
    }
 
+   // запись
    async startRecord() {
-      /* this.startButton.disabled = true;
-      this.stopButton.disabled = false;
-      this.result.disabled = true;
-      this.mediaRecorder = new MediaRecorder(this.stream);
-      this.mediaRecorder.addEventListener('dataavailable', this.handleDataAvailable.bind(this));
-      this.mediaRecorder.addEventListener('stop', this.handleStop.bind(this));
-      this.mediaRecorder.start(); */
-
       // проверяем поддержку
       if (!navigator.mediaDevices && !navigator.mediaDevices.getUserMedia) {
          return console.warn('Not supported')
@@ -71,7 +63,7 @@ class audioRecorder {
          this.stopButton.removeAttribute('disabled');
          // сбрасываем предыдущие результаты
          if (this.showResult && this.result) {
-            this.inputPost.value = '';
+            // this.inputPost.value = '';
             this.resultListen.src = '';
             this.resultDownload.href = '';
             this.result.setAttribute('hidden', '');
@@ -124,16 +116,16 @@ class audioRecorder {
                container.items.add(file);
 
                this.inputFile.files = container.files;
-               console.log(this.inputFile.files);
+               // console.log(this.inputFile.files);
 
                // для отправки на сервер конвертируем blob в  base64
                // проблема в длине\размере - сервер не принимает такой большой
-               let reader = new FileReader();
+               /* let reader = new FileReader();
                reader.readAsDataURL(this.audioBlob); // конвертирует Blob в base64 и вызывает onload
                reader.onload = (e) => {
                   this.inputPost.value = reader.result;
                   // console.log(reader.result);
-               }
+               } */
 
                // выполняем очистку
                this.mediaRecorder = null
@@ -144,8 +136,51 @@ class audioRecorder {
                this.mediaRecorder.stop();
                this.startButton.removeAttribute('disabled');
                this.stopButton.setAttribute('disabled', '');
+
+               if (this.limit) {
+                  clearInterval(this.timerStart);
+               }
             });
-   
+
+            if (this.limit) {
+               console.log(this.limit);
+               
+               this.timer.removeAttribute('hidden');
+
+               let seconds = 0,
+                   minutes = 0;
+               this.timerStart = setInterval(() => {
+                  seconds++;
+
+                  if (seconds < 10) {
+                     this.seconds.textContent = '0' + seconds;
+                  } else {
+                     this.seconds.textContent = seconds;
+                  }
+
+                  if (seconds == 60) {
+                     seconds = 0;
+                     minutes++;
+
+                     if (minutes < 10) {
+                        this.minutes.textContent = '0' + minutes;
+                     } else {
+                        this.minutes.textContent = minutes;
+                     }
+                  }
+
+               }, 1000);
+
+               setTimeout(() => {
+                  clearInterval(this.timerStart);
+                  this.mediaRecorder.stop();
+                  this.startButton.removeAttribute('disabled');
+                  this.stopButton.setAttribute('disabled', '');
+               }, this.limit);
+            }
+
+
+
          } catch (e) {
             console.error(e)
             //  record_img.src = ' img/microphone.png'
@@ -153,6 +188,7 @@ class audioRecorder {
       }
    }
 
+   // вывод результата
    createResult() {
       const domString = this.createResultDomString();
 

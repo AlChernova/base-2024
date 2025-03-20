@@ -1261,8 +1261,9 @@ if (recorders.length > 0) {
     recorders.forEach(item => {
         new audioRecorder(item, {
             showResult: true,
-            showPlayer: true,
-            showDownload: true
+            showPlayer: true, // default player generated script
+            showDownload: true,
+            limit: 180, // seconds
         });
     });
 }

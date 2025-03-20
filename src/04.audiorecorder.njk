@@ -2,7 +2,7 @@
 layout: inner.njk
 title: Audio recorder 
 permalink: audiorecorder.html
-pluginCss: /scripts/components/audiorecorder.css
+pluginCss: /styles/components/audiorecorder.css
 pluginJs: /scripts/components/audiorecorder.js
 eleventyNavigation:
   key: audiorecorder 
@@ -12,29 +12,27 @@ eleventyNavigation:
 <div class="innerPage__section">
   <div class="audiorecord" data-audiorecord>
     <div class="audiorecord__control">
-      <button class="button button--withicon" type="button" data-record="start">
+      <button class="audiorecord__start button button--withicon" type="button" data-record="start">
         <span class="icok">
           <svg alt="">
               <use xlink:href="/images/sprite.svg#svg-microphone-stroke"></use>
           </svg>
         </span>
-        <span>Записать ответ</span>
+        <span>Записать ответ (3 минуты)</span>
       </button>
-      <button class="button button--withicon" type="button" disabled data-record="stop">
-        <span>Стоп</span>
-      </button>
+      <div class="audiorecord__progress audiorecord__progress--limit">{#  hidden="hidden" #}
+        <div class="audiorecord__timer" data-record="timer"><span class="audiorecord__timermin" data-record="minutes">00</span>:<span class="audiorecord__timersec" data-record="seconds">00</span></div>
+        {# <div class="audiorecord__bar">
+          <div class="audiorecord__barmarker"></div>
+        </div> #}
+        <button class="button button--withicon" type="button" disabled data-record="stop">
+          <span>Стоп</span>
+        </button>
+      </div>
     </div>
-    <input type="hidden" name="p_audio_file_1" value="" data-record="post">
-    <input type="file" data-record="file" style="pointer-events: none;">
-    {# <div class="audiorecord__result" data-record="result" hidden>
-      <p>Проверить запись<br>
-        <audio id="audio" controls src="#" data-record="result_listen">{# 
-          Ваш браузер не поддерживает встроенное аудио. Попробуйте скачать его
-          <a href="hi-alice.mp3" download>по ссылке</a>. }
-        </audio>
-      </p>
-      <p><a href="#" download data-record="result_download">Скачать запись</a></p>
-    </div> #}
+    {# <input type="hidden" name="p_audio_file_1" value="" data-record="post"> #}
+    <!-- приемник записи для отправки -->
+    <input class="audiorecord__inputhidden" type="file" data-record="file">
   </div>
 </div>
 {# 2 #}
@@ -54,6 +52,15 @@ eleventyNavigation:
       </button>
     </div>
       <input type="hidden" name="p_audio_file_2" value="" data-record="post">
+      {# <div class="audiorecord__result" data-record="result" hidden>
+      <p>Проверить запись<br>
+        <audio id="audio" controls src="#" data-record="result_listen">{# 
+          Ваш браузер не поддерживает встроенное аудио. Попробуйте скачать его
+          <a href="hi-alice.mp3" download>по ссылке</a>. }
+        </audio>
+      </p>
+      <p><a href="#" download data-record="result_download">Скачать запись</a></p>
+    </div> }
   </div>
 </div> #}
 
