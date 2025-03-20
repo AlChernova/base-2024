@@ -25,10 +25,8 @@ class audioRecorder {
       this.timer = this.recorder.querySelector('[data-record=timer]');
       this.minutes = this.recorder.querySelector('[data-record=minutes]');
       this.seconds = this.recorder.querySelector('[data-record=seconds]');
-      this.timerStart;
       if (this.limit) {
          this.bar = this.recorder.querySelector('[data-record=bar]');
-         this.barTimer;
       }
 
       // consts datas
@@ -69,13 +67,9 @@ class audioRecorder {
 
 
          // сбрасываем предыдущие результаты
-         if (this.showResult && this.result) {
-            // this.inputPost.value = '';
+         /* if (this.showResult && this.result) {
             this.inputFile.value = '';
-            /* this.resultListen.src = '';
-            this.resultDownload.href = '';
-            this.result.setAttribute('hidden', ''); */
-         }
+         } */
 
          try {
             // получаем поток аудио-данных
@@ -105,15 +99,8 @@ class audioRecorder {
                // данный метод "берет" `Blob` и создает уникальный `URL` для него в формате `blob:<origin>/<uuid>`
                if (this.showResult) {
                   this.url = URL.createObjectURL(this.audioBlob)
-                  // this.result.removeAttribute('hidden');
 
                   this.createResult();
-                  /* if (this.showPlayer) {
-                     this.resultListen.src = this.url;
-                  }
-                  if (this.showDownload) {
-                     this.resultDownload.href = this.url;
-                  } */
                }
 
                // test blob в file и в инпут type=file
@@ -175,6 +162,7 @@ class audioRecorder {
             // ограничение по времени записи
             if (this.limit) {
                console.log(this.limit);
+               this.bar.style.width = '0%';
 
                // запускаем таймер для бара  с меньшим интервалом для плавности
                let seconds = 0;
@@ -186,27 +174,15 @@ class audioRecorder {
 
                }, 10);
 
-               setTimeout(() => {
-                  clearInterval(this.timerStart);
-                  clearInterval(this.barTimer);
-                  this.mediaRecorder.stop();
-                  this.startButton.removeAttribute('disabled');
-                  this.stopButton.setAttribute('disabled', '');
+               // останавливаем запись через заданное время
+               this.timerStop = setTimeout(() => {
+                  this.stopRecord();
                }, this.limit);
             }
 
             // стоп кнопка
             this.stopButton.addEventListener('click', (e) => {
-               this.mediaRecorder.stop();
-               // this.startButton.removeAttribute('disabled');
-               // this.stopButton.setAttribute('disabled', '');
-               this.progress.setAttribute('hidden', '');
-
-               clearInterval(this.timerStart);
-
-               if (this.limit) {
-                  clearInterval(this.barTimer);
-               }
+               this.stopRecord();
             });
 
 
@@ -214,6 +190,18 @@ class audioRecorder {
             console.error(e)
             //  record_img.src = ' img/microphone.png'
          }
+      }
+   }
+
+   stopRecord() {
+      this.mediaRecorder.stop();
+      this.progress.setAttribute('hidden', '');
+
+      clearInterval(this.timerStart);
+
+      if (this.limit) {
+         clearInterval(this.barTimer);
+         clearTimeout(this.timerStop);
       }
    }
 
@@ -262,6 +250,9 @@ class audioRecorder {
       this.result = null;
       this.resultListen = null;
       this.resultDownload = null;
+      if (this.limit) {
+         this.bar.style.width = '0%';
+      }
 
       this.startButton.removeAttribute('disabled');
       this.startButton.removeAttribute('hidden');
