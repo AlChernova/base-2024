@@ -22,7 +22,9 @@ class audioPlayer2 {
         this.audio.addEventListener("loadeddata", this.loadeddata.bind(this), false)
         this.volumeSlider.addEventListener("click", this.controlVolume.bind(this), false);
         // this.volumeButton.addEventListener("click", this.toggleVolumeBtn.bind(this), false);
+        
         if (this.control) {
+            this.audio.addEventListener('ended', this.endPlay.bind(this), false)
             this.playBtn.addEventListener("click", this.togglePlay.bind(this), false);
             this.timeline.addEventListener("click", this.setTime.bind(this), false);
         } else {
@@ -78,6 +80,11 @@ class audioPlayer2 {
         } else {
             // playBtn.setAttribute('hidden', '');
         }
+    }
+
+    endPlay() {
+        this.playBtn.classList.remove("pause");
+        this.playBtn.classList.add("play");
     }
 
     //click volume slider to change volume
