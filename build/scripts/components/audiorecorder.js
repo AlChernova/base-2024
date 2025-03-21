@@ -19,8 +19,10 @@ class audioRecorder {
       this.showResult = opts.showResult || false;
       this.url = opts.showResult ? "" : false;
       this.showPlayer = opts.showPlayer || false;
+      this.showCustomPlayer = opts.showCustomPlayer || false;
       this.showDownload = opts.showDownload || false;
       this.limit = opts.limit * 1000 || false;
+      this.linkIcons = opts.linkIcons;
 
       this.timer = this.recorder.querySelector('[data-record=timer]');
       this.minutes = this.recorder.querySelector('[data-record=minutes]');
@@ -86,48 +88,7 @@ class audioRecorder {
             });
             console.log("start record");
 
-            // обработчик окончания записи 
-            this.mediaRecorder.addEventListener("stop", (e) => {
-               // создаем объект `Blob` с помощью соответствующего конструктора,
-               // передавая ему `blobParts` в виде массива и настройки с типом создаваемого объекта
-               // о том, что такое `Blob` и для чего он может использоваться
-               // очень хорошо написано здесь: https://learn.javascript.ru/blob
-               this.audioBlob = new Blob(this.chunks, { type: 'audio/wav' })
-
-               // для вывода проверки записи создаем ссылку на файл
-               // метод `createObjectURL()` может использоваться для создания временных ссылок на файлы
-               // данный метод "берет" `Blob` и создает уникальный `URL` для него в формате `blob:<origin>/<uuid>`
-               if (this.showResult) {
-                  this.url = URL.createObjectURL(this.audioBlob)
-
-                  this.createResult();
-               }
-
-               // test blob в file и в инпут type=file
-               // Для этого создаем объект File из blob и новый объект DataTransfer:
-               let file = new File([this.audioBlob], 'test.wav', { type: 'audio/wav' });
-               let container = new DataTransfer();
-               // Затем вы добавляете файл в контейнер, тем самым заполняя его свойство «files», которое можно назначить свойству «files» входного файла:
-               container.items.add(file);
-
-               this.inputFile.files = container.files;
-               // console.log(this.inputFile.files);
-
-               // для отправки на сервер конвертируем blob в  base64
-               // проблема в длине\размере - сервер не принимает такой большой
-               /* let reader = new FileReader();
-               reader.readAsDataURL(this.audioBlob); // конвертирует Blob в base64 и вызывает onload
-               reader.onload = (e) => {
-                  this.inputPost.value = reader.result;
-                  // console.log(reader.result);
-               } */
-
-               // выполняем очистку
-               this.mediaRecorder = null
-               this.chunks = []
-            });
-
-            // запускаем таймер
+            // запускаем  и выводим таймер
             this.progress.removeAttribute('hidden');
             let seconds = 0,
                 minutes = 0;
@@ -159,9 +120,9 @@ class audioRecorder {
 
             }, 1000);
 
-            // ограничение по времени записи
+            // если ограничение по времени записи
             if (this.limit) {
-               console.log(this.limit);
+               // console.log(this.limit);
                this.bar.style.width = '0%';
 
                // запускаем таймер для бара  с меньшим интервалом для плавности
@@ -185,6 +146,46 @@ class audioRecorder {
                this.stopRecord();
             });
 
+            // обработчик окончания записи 
+            this.mediaRecorder.addEventListener("stop", (e) => {
+               // создаем объект `Blob` с помощью соответствующего конструктора,
+               // передавая ему `blobParts` в виде массива и настройки с типом создаваемого объекта
+               // о том, что такое `Blob` и для чего он может использоваться
+               // очень хорошо написано здесь: https://learn.javascript.ru/blob
+               this.audioBlob = new Blob(this.chunks, { type: 'audio/wav' })
+
+               // для вывода проверки записи создаем ссылку на файл
+               // метод `createObjectURL()` может использоваться для создания временных ссылок на файлы
+               // данный метод "берет" `Blob` и создает уникальный `URL` для него в формате `blob:<origin>/<uuid>`
+               if (this.showResult) {
+                  this.url = URL.createObjectURL(this.audioBlob)
+
+                  this.createResult();
+               }
+
+               // конвертируем blob в file и прикрепляем к инпут type=file
+               // Для этого создаем объект File из blob и новый объект DataTransfer:
+               let file = new File([this.audioBlob], 'answer.wav', { type: 'audio/wav' });
+               let container = new DataTransfer();
+               // Затем вы добавляете файл в контейнер, тем самым заполняя его свойство «files», которое можно назначить свойству «files» входного файла:
+               container.items.add(file);
+
+               this.inputFile.files = container.files;
+               // console.log(this.inputFile.files);
+
+               // тест 1: для отправки на сервер конвертируем blob в  base64
+               // проблема в длине\размере - сервер не принимает такой большой
+               /* let reader = new FileReader();
+               reader.readAsDataURL(this.audioBlob); // конвертирует Blob в base64 и вызывает onload
+               reader.onload = (e) => {
+                  this.inputPost.value = reader.result;
+                  // console.log(reader.result);
+               } */
+
+               // выполняем очистку
+               this.mediaRecorder = null
+               this.chunks = []
+            });
 
          } catch (e) {
             console.error(e)
@@ -194,6 +195,8 @@ class audioRecorder {
    }
 
    stopRecord() {
+      console.log("stop record");
+      
       this.mediaRecorder.stop();
       this.progress.setAttribute('hidden', '');
 
@@ -226,17 +229,18 @@ class audioRecorder {
          this.resultListen = this.recorder.querySelector('[data-record=result_listen]');
       } */
 
-      /* if (this.showCustomPlayer) {
-         this.resultCustomPlayer = this.recorder.querySelector('[data-record=result_customplayer]');
-      } */
+      if (this.showCustomPlayer) {
+         this.resultCustomPlayer = this.recorder.querySelector('[data-audio]');
+         this.player = new audioPlayer2(this.resultCustomPlayer, this.url);
+      }
       
       if (this.showDownload) {
-         this.resultDownload = this.recorder.querySelector('[data-record=result_download]');
+         // this.resultDownload = this.recorder.querySelector('[data-record=result_download]');
       }
    }
 
    createResultDomString() {
-      let html = '<div class="audiorecord__result" data-record="result"><div class="audiorecord__resulttitle">Ответ записан';
+      let html = '<div class="audiorecord__result" data-record="result"><div class="audiorecord__resulttitle">Запись сделана';
 
       html+='<button class="audiorecord__reset button" data-record="reset">Очистить</button></div>';
       
@@ -271,7 +275,7 @@ class audioRecorder {
             <div class="divider">/</div>
             <div class="length"></div>
          </div>`;
-      let name = `<div class="name">Запись ответа</div>`;
+      let name = `<div class="name">Ваша запись</div>`;
 
       let volume = `<div class="volume-container">
             <button class="volume-button" type="button">
@@ -301,7 +305,7 @@ class audioRecorder {
       this.result.remove();
       this.result = null;
       // this.resultListen = null;
-      this.resultDownload = null;
+      // this.resultDownload = null;
       if (this.limit) {
          this.bar.style.width = '0%';
       }
