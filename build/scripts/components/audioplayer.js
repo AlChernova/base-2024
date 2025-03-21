@@ -3,10 +3,11 @@
 Aleksandra Chernova, 2025.03.14 */
 class audioPlayer2 {
     // методы класса
-    constructor(item, source, nocontrol) { 
+    constructor(item, options) { 
         this.item = item;
-        this.source = source;
-        this.control = nocontrol ? false : true;
+        this.source = this.item.dataset.audio;
+        this.control = this.item.dataset.nocontrol ? false : true;
+        const opts = options || {};
 
         // consts
         this.audio = new Audio(this.source);
@@ -14,7 +15,8 @@ class audioPlayer2 {
         this.volumeButton = this.item.querySelector(".volume-button");
         this.volumeSlider = this.item.querySelector(".controls .volume-slider");
         this.timeline = this.item.querySelector(".timeline");
-        this.progressBar = this.item.querySelector(".progress");        
+        this.progressBar = this.item.querySelector(".progress"); 
+        this.selfDuration = opts.duration || false;       
 
         // listeners
         this.audio.addEventListener("loadeddata", this.loadeddata.bind(this), false)
@@ -39,11 +41,10 @@ class audioPlayer2 {
     }
     loadeddata() {
         // console.log("loadeddata");
-        console.log(this.audio.duration);
-        
-        this.item.querySelector(".time .length").textContent = this.getTimeCodeFromNum(
-            this.audio.duration
-        );
+        this.duration = this.audio.duration == "Infinity" ? this.selfDuration : this.audio.duration;
+        // console.log(duration);
+
+        this.item.querySelector(".time .length").textContent = this.getTimeCodeFromNum(this.duration);
         this.audio.volume = .75;
     }
     
@@ -107,7 +108,7 @@ class audioPlayer2 {
         // console.log("setTime");
         
         const timelineWidth = window.getComputedStyle(this.timeline).width;
-        const timeToSeek = e.offsetX / parseInt(timelineWidth) * this.audio.duration;
+        const timeToSeek = e.offsetX / parseInt(timelineWidth) * this.duration;
         this.audio.currentTime = timeToSeek;
     }
 

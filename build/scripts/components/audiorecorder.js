@@ -92,8 +92,10 @@ class audioRecorder {
             this.progress.removeAttribute('hidden');
             let seconds = 0,
                 minutes = 0;
+            this.duration = 0;
             this.timerStart = setInterval(() => {
                seconds++;
+               this.duration++;
 
                if (seconds < 10) {
                   this.seconds.textContent = '0' + seconds;
@@ -231,7 +233,11 @@ class audioRecorder {
 
       if (this.showCustomPlayer) {
          this.resultCustomPlayer = this.recorder.querySelector('[data-audio]');
-         this.player = new audioPlayer2(this.resultCustomPlayer, this.url);
+         console.log(this.duration);
+         
+         this.player = new audioPlayer2(this.resultCustomPlayer, {
+            duration: this.duration
+         });
       }
       
       if (this.showDownload) {
