@@ -35,7 +35,7 @@ class audioPlayer2 {
         // console.log(this.audio);
         //check audio percentage and update time accordingly
         setInterval(() => {
-            this.progressBar.style.width = this.audio.currentTime / this.audio.duration * 100 + "%";
+            this.progressBar.style.width = this.audio.currentTime / this.duration * 100 + "%";
             this.item.querySelector(".time .current").textContent = this.getTimeCodeFromNum(
                 this.audio.currentTime
             );
@@ -44,7 +44,7 @@ class audioPlayer2 {
     loadeddata() {
         // console.log("loadeddata");
         this.duration = this.audio.duration == "Infinity" ? this.selfDuration : this.audio.duration;
-        // console.log(duration);
+        console.log(this.duration);
 
         this.item.querySelector(".time .length").textContent = this.getTimeCodeFromNum(this.duration);
         this.audio.volume = .75;

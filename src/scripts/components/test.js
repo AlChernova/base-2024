@@ -14,7 +14,7 @@ if (recorders.length > 0) {
             // showPlayer: true, // default player generated script
             showCustomPlayer: "true", // 
             showDownload: true,
-            limit: 10, // seconds
+            limit: 30, // seconds
             linkIcons: "/images/sprite.svg" // путь к svg спрайту
         });
     });

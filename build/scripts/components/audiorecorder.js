@@ -145,6 +145,8 @@ class audioRecorder {
 
             // стоп кнопка
             this.stopButton.addEventListener('click', (e) => {
+               console.log('stop button');
+               
                this.stopRecord();
             });
 
@@ -233,7 +235,7 @@ class audioRecorder {
 
       if (this.showCustomPlayer) {
          this.resultCustomPlayer = this.recorder.querySelector('[data-audio]');
-         console.log(this.duration);
+         // console.log(this.duration);
          
          this.player = new audioPlayer2(this.resultCustomPlayer, {
             duration: this.duration
@@ -310,6 +312,8 @@ class audioRecorder {
    resetResult() {
       this.result.remove();
       this.result = null;
+      this.seconds.textContent = '00';
+      this.minutes.textContent = '00';
       // this.resultListen = null;
       // this.resultDownload = null;
       if (this.limit) {
