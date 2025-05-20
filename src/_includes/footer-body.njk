@@ -3,13 +3,19 @@
 
 <!-- плагины -->
 <script src="/scripts/fancybox/fancybox-5.0.umd.js"></script>
+<script src="/scripts/swiper/swiper-bundle-11.1.14.min.js"></script>
 <script src="/scripts/choices/choices.min.js"></script>
 <script src="/scripts/hotel-datepicker/fecha.min.js"></script>
 <script src="/scripts/hotel-datepicker/hotel-datepicker.min.js"></script>
 <script src="/scripts/autosuggest/autosuggest.1.9.0.min.js"></script>
 <!-- индивидуальные  -->
 {% if pluginJs %}
-    <script src="{{ pluginJs }}"></script>
+    {% set type = '' %}
+    {% if pluginJs_type %}
+        {% set type = "type=" + pluginJs_type %}
+    {% endif %}
+    <script src="{{ pluginJs }}" {{ type }}></script>
+    
 {% endif %}
 {% if pluginJs2 %}
     <script src="{{ pluginJs2 }}"></script>

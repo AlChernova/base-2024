@@ -2,93 +2,83 @@
 layout: inner.njk
 title: Floating UI tooltips 
 permalink: tooltip-floating-ui.html
+pluginJs: /scripts/components/mount-floating-ui.js
+pluginJs_type: module
 eleventyNavigation:
   key: Floating UI - tooltips 
   icon: docs-thin
 ---
 {# pluginCss: /scripts/floating-ui/floating-ui-custom.css #}
 <div class="innerPage__section">
- <p><a href="https://floating-ui.com/">https://floating-ui.com/</a> - A JavaScript library to position floating elements and create interactions for them.</p>
- <p>сплошные импорты модулей цепочкой из файла в файл, с классикой не поняла как работать, хотя там вроде есть подключение по cdn</p>
- {# pluginJs2: https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.12
+  <p>
+    <a href="https://floating-ui.com/">https://floating-ui.com/</a> - A JavaScript library to position floating elements and create interactions for them.</p>
+  <p>сплошные импорты модулей цепочкой из файла в файл, с классикой не поняла как работать, хотя там вроде есть подключение по cdn</p>
+  {# pluginJs2: https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.12
  pluginJs: https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.8 #}
 </div>
 <div class="innerPage__section">
   <span class="tooltip">
-    <button class="button btn-default tooltip__toggle" id="button" aria-describedby="tooltip">
+    <button class="button btn-default tooltip__toggle" id="button" aria-describedby="tooltip" aria-expanded="false">
         My button
       </button>
   </span>
-      <div id="tooltip" role="tooltip" class="tooltip__content"><div class="tooltip__text">My tooltip</div></div>
+  <div id="tooltip" role="tooltip" class="tooltip__content">
+    <div class="tooltip__text">My tooltip</div>
+  </div>
 </div>
 {# ====================================== #}
 <div class="innerPage__section">
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequuntur, odio sint voluptate nostrum magnam tempore debitis, suscipit expedita nobis aliquam modi pariatur quidem assumenda laudantium amet nam, numquam aspernatur?</p>
-</div>
+  <div class="base-slider swiper" id="id-slider">
+    <div class="swiper-wrapper">
+      <div class="item swiper-slide">
+        <div class="img"><img src="https://dummyimage.com/600x300/ccc/fff&text=img1" alt=""></div>
+        <p class="caption">Мобильное приложение</p>
+      </div>
+      <div class="item swiper-slide">
+        <div class="img"><img src="https://dummyimage.com/600x300/ccc/fff&text=img2" alt=""></div>
+        <p class="caption">Датчик температуры</p>
+      </div>
+      <div class="item swiper-slide">
+        <div class="img"><img src="https://dummyimage.com/600x300/ccc/fff&text=img3" alt=""></div>
+        <p class="caption">Датчик движения</p>
+      </div>
+      <div class="item swiper-slide">
+        <div class="img"><img src="https://dummyimage.com/600x300/ccc/fff&text=img4" alt=""></div>
+        <p class="caption">Мобильное приложение</p>
+      </div>
+      <div class="item swiper-slide">
+        <div class="img"><img src="https://dummyimage.com/600x300/ccc/fff&text=img5" alt=""></div>
+        <p class="caption">Датчик температуры</p>
+      </div>
+      <div class="item swiper-slide">
+        <div class="img"><img src="https://dummyimage.com/600x300/ccc/fff&text=img6" alt=""></div>
+        <p class="caption">Датчик движения</p>
+      </div>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
 
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</div>
 
 {# ====================================== #}
 <style>
-      #tooltip {
-        display: none;
-        width: max-content;
-  position: absolute;
-  top: 0;
-  left: 0;
-        background: #222;
-        color: white;
-        font-weight: bold;
-        padding: 5px;
-        border-radius: 4px;
-        font-size: 90%;
-      }
-  </style>
+  #tooltip {
+    display: none;
+    width: max-content;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #222;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 90%;
+  }
+</style>
 {# ====================================== #}
-<script type="module">
-  import {computePosition, flip, shift, offset, autoUpdate} from 'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.0/+esm';
-
-const button = document.querySelector('#button');
-const tooltip = document.querySelector('#tooltip');
- 
-function update() { 
-  computePosition(button, tooltip, {
-    placement: 'bottom',
-    middleware: [offset(8), flip(), shift({padding: 5})],
-  }).then(({x, y, placement}) => {
-    Object.assign(tooltip.style, {
-      left: `${x}px`,
-      top: `${y}px`,
-    });
-  });
-}
-function showTooltip() {
-  tooltip.style.display = 'block';
-  update();
-}
- 
-function hideTooltip() {
-  tooltip.style.display = '';
-}
-document.body.append(tooltip);
-const cleanup = autoUpdate(
-  button,
-  tooltip,
-  update,
-);
-
-[
-  ['mouseenter', showTooltip],
-  ['mouseleave', hideTooltip],
-  ['focus', showTooltip],
-  ['blur', hideTooltip],
-].forEach(([event, listener]) => {
-  button.addEventListener(event, listener);
-});
-</script>
