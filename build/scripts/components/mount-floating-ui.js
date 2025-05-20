@@ -5,6 +5,9 @@
   // Optional parameters
 //   direction: 'vertical',
   loop: true,
+  speed: 400,
+		slidesPerView: 2,
+		autoHeight: true,
 
   // If we need pagination
   pagination: {
@@ -45,6 +48,7 @@ function showTooltip() {
  
 function hideTooltip() {
   tooltip.style.display = '';
+  cleanup();
 }
 document.body.append(tooltip);
 const cleanup = autoUpdate(
