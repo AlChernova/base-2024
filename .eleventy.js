@@ -68,6 +68,7 @@ module.exports = function(config){
 		'./src/styles/desctop.css',
 		'./src/styles/components/audiorecorder.css',
 		'./src/styles/components/audioplayer.css',
+		'./src/styles/components/gsap-scroll-trigger.css',
 	];
   config.addExtension('css', {
     outputFileExtension: 'css',
