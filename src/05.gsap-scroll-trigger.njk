@@ -1,0 +1,33 @@
+---
+layout: inner.njk
+title: "GSAP - Horizontal \"containerAnimation\" - ScrollTrigger" 
+permalink: gsap-scroll-trigger.html
+pluginCss: /styles/components/audiorecorder.css
+pluginJs: /scripts/components/audiorecorder.js
+eleventyNavigation:
+  key: GSAP - ScrollTrigger
+  icon: docs-thin
+---
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
+
+
+<div class="innerPage__section">
+  <div class="testbox">gdv</div>
+</div>
+
+<script>
+	// use a script tag or an external JS file
+	document.addEventListener("DOMContentLoaded", (event) => {
+		gsap.registerPlugin(ScrollTrigger,ScrollToPlugin)
+		// gsap code here!
+
+		gsap.to('.testbox', {
+			scrollTrigger: '.testbox', // start the animation when ".box" enters the viewport (once)
+			x: 500
+		});
+	});
+
+</script>
