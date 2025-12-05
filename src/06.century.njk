@@ -1,0 +1,51 @@
+---
+layout: inner.njk
+title: Century 
+permalink: century.html
+eleventyNavigation:
+  key: Century 
+---
+
+
+<div class="innerPage__section">
+  <button type="button" id="btn" class="button btn-default">определение по году:</button>
+<div id="result"></div>
+
+</div>
+
+<script>
+function defineCentury(year) {
+  let dd = (year % 100);
+  let itog = {
+    "year": year,
+    "half": 1 + ((year % 100) > 50),
+    "century": 1 + Math.trunc(year/100),
+    "decade": Math.trunc(dd/10) + "0-е",
+    "mille": 1 + Math.trunc(year/1000)
+  }
+  return itog;
+}
+
+function printRes(century) {
+  let yearText = `Для года ${century.year}`;
+  let centuryText = `Век ${century.century}-й`;
+  let decadeText = `Десятилетие ${century.decade}`;
+  let resultHTML = "<p>" + yearText + ": " + centuryText + ", " + decadeText + "</p>";
+  
+  return resultHTML
+}
+//${century.century - 1}
+
+let century = defineCentury(1907);
+const output = document.querySelector("#result");
+const btn = document.querySelector("#btn");
+btn.addEventListener("click", (e) => {
+  output.insertAdjacentHTML('beforeend', printRes(century));
+});
+
+
+// console.log(printRes(century));
+{# console.log(1825, defineCentury(1825)); #}
+// console.log(1790, defineCentury(1790));
+// console.log(1800, defineCentury(1800));
+</script>
